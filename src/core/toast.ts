@@ -1,6 +1,15 @@
 import { dismiss, remove, upsert } from './store';
-import type { Toast, Renderable, DefaultToastOptions, ToastOptions, ToastType } from './types';
+import {
+	type Toast,
+	type Renderable,
+	type DefaultToastOptions,
+	type ToastOptions,
+	type ToastType,
+	resolveValue
+} from './types';
 import { genId } from './utils';
+
+type Message = Renderable;
 
 type ToastHandler = (message: Message, options?: ToastOptions) => string;
 

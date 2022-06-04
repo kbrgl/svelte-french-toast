@@ -23,7 +23,7 @@
 >
 	{#each $toasts as toast}
 		{@const toastPosition = toast.position || position}
-		{@const toastOffset = handlers.calculateOffset(toast, {
+		{@const toastOffset = handlers.calculateOffset(toast, $toasts, {
 			reverseOrder,
 			gutter,
 			defaultPosition: position

@@ -1,5 +1,5 @@
 import { get, writable, type Writable } from 'svelte/store';
-import type { DefaultToastOptions, Toast } from './types';
+import type { DefaultToastOptions, Toast, ToastType } from './types';
 import writableDerived from 'svelte-writable-derived';
 
 const TOAST_LIMIT = 20;
@@ -55,7 +55,7 @@ export function add(toast: Toast) {
 	toasts.update((prevToasts) => [toast, ...prevToasts].slice(0, TOAST_LIMIT));
 }
 
-export function dismiss(toastId: Toast['id']) {
+export function dismiss(toastId?: Toast['id']) {
 	toasts.update((prevToasts) => {
 		if (toastId) {
 			addToRemoveQueue(toastId);
@@ -71,7 +71,7 @@ export function dismiss(toastId: Toast['id']) {
 	});
 }
 
-export function remove(toastId: Toast['id']) {
+export function remove(toastId?: Toast['id']) {
 	toasts.update((prevToasts) => {
 		if (toastId === undefined) {
 			return [];
@@ -80,16 +80,16 @@ export function remove(toastId: Toast['id']) {
 	});
 }
 
-export function startPause(time) {
-	pausedAt.update(time);
+export function startPause(time: number) {
+	pausedAt.set(time);
 }
 
-export function endPause(time) {
-	let diff;
+export function endPause(time: number) {
+	let diff: number;
 
 	pausedAt.update((prevPausedAt) => {
 		diff = time - (prevPausedAt || 0);
-		return undefined;
+		return null;
 	});
 
 	toasts.update((prevToasts) =>
@@ -123,11 +123,7 @@ export function useToasterStore(toastOptions: DefaultToastOptions = {}): State {
 					toastOptions[t.type]?.duration ||
 					toastOptions?.duration ||
 					defaultTimeouts[t.type],
-				style: {
-					...toastOptions.style,
-					...toastOptions[t.type]?.style,
-					...t.style
-				}
+				style: [toastOptions.style, toastOptions[t.type]?.style, t.style].join(';')
 			})),
 		($toasts) => $toasts
 	);

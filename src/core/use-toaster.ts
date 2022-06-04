@@ -1,34 +1,28 @@
-import { useToasterStore } from './store';
-import type { ToastOptions } from './types';
+import { endPause as _endPause, startPause as _startPause, useToasterStore } from './store';
+import type { Toast, ToastOptions, ToastPosition } from './types';
 
 export function useToaster(toastOptions?: ToastOptions) {
-	const { toasts, pausedAt } = useToasterStore(toastOptions);
-
-	let _toasts;
-	toasts.subscribe((toasts) => (_toasts = toasts));
+	const { toasts } = useToasterStore(toastOptions);
 
 	const handlers = {
 		startPause() {
-			pausedAt.set(Date.now());
+			_startPause(Date.now());
 		},
 		endPause() {
-			pausedAt.update((prevPausedAt) => {
-				if (!prevPausedAt) {
-					return null;
-				}
-			});
+			_endPause(Date.now());
 		},
 		calculateOffset(
 			toast: Toast,
+			toasts: Toast[],
 			opts?: {
 				reverseOrder?: boolean;
 				gutter?: number;
 				defaultPosition?: ToastPosition;
 			}
 		) {
-			const { reverseOrder, gutter, defaultPosition } = opts || {};
+			const { reverseOrder, gutter = 8, defaultPosition } = opts || {};
 
-			const relevantToasts = _toasts.filter(
+			const relevantToasts = toasts.filter(
 				(t) => (t.position || defaultPosition) === (toast.position || defaultPosition) && t.height
 			);
 			const toastIndex = relevantToasts.findIndex((t) => t.id === toast.id);
