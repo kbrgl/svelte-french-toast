@@ -1,0 +1,14 @@
+{
+  "name": "svelte-buttered-toast",
+  "version": "0.1.0",
+  "description": "Buttery smooth Svelte toasts. Lightweight, customizable, and beautiful by default.",
+  "author": "Kabir Goel",
+  "sideEffects": false,
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "kbrgl/svelte-buttered-toast",
+  "keywords": ["svelte", "notifications", "toast", "snackbar"]
+}
