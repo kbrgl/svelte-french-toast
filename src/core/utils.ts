@@ -1,12 +1,15 @@
 export const genId = (() => {
 	let count = 0;
 
-	return () => (count++).toString();
+	return () => {
+		count += 1;
+		return count.toString();
+	};
 })();
 
 export const prefersReducedMotion = (() => {
 	// Cache result
-	let shouldReduceMotion: boolean | undefined = undefined;
+	let shouldReduceMotion: boolean | undefined;
 
 	return () => {
 		if (shouldReduceMotion === undefined && typeof window !== 'undefined') {

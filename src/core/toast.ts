@@ -80,4 +80,4 @@ toast.promise = <T>(
 	return promise;
 };
 
-export { toast };
+export default toast;

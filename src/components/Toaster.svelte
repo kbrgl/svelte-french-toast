@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { useToaster } from '../core/use-toaster';
+	import useToaster from '../core/use-toaster';
 	import ToastBar from '../components/ToastBar.svelte';
 	import type { ToastOptions, ToastPosition } from '../core/types';
 	import { prefersReducedMotion } from '../core/utils';

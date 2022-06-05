@@ -1,7 +1,7 @@
 import { endPause as _endPause, startPause as _startPause, useToasterStore } from './store';
 import type { Toast, ToastOptions, ToastPosition } from './types';
 
-export function useToaster(toastOptions?: ToastOptions) {
+export default function useToaster(toastOptions?: ToastOptions) {
 	const { toasts } = useToasterStore(toastOptions);
 
 	const handlers = {

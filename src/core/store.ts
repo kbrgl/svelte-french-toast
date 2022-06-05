@@ -34,14 +34,6 @@ const clearFromRemoveQueue = (toastId: string) => {
 	}
 };
 
-export function upsert(toast: Toast) {
-	if (get(toasts).find((t) => t.id === toast.id)) {
-		update(toast);
-	} else {
-		add(toast);
-	}
-}
-
 export function update(toast: Toast) {
 	if (toast.id) {
 		clearFromRemoveQueue(toast.id);
@@ -53,6 +45,14 @@ export function update(toast: Toast) {
 
 export function add(toast: Toast) {
 	toasts.update((prevToasts) => [toast, ...prevToasts].slice(0, TOAST_LIMIT));
+}
+
+export function upsert(toast: Toast) {
+	if (get(toasts).find((t) => t.id === toast.id)) {
+		update(toast);
+	} else {
+		add(toast);
+	}
 }
 
 export function dismiss(toastId?: Toast['id']) {
