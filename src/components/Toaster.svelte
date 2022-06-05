@@ -21,7 +21,7 @@
 	on:mouseenter={handlers.startPause}
 	on:mouseleave={handlers.endPause}
 >
-	{#each $toasts as toast}
+	{#each $toasts as toast (toast.id)}
 		{@const toastPosition = toast.position || position}
 		{@const toastOffset = handlers.calculateOffset(toast, $toasts, {
 			reverseOrder,
