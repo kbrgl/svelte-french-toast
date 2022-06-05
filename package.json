@@ -1,6 +1,6 @@
 {
 	"name": "svelte-buttered-toast",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Buttery smooth Svelte toasts. Lightweight, customizable, and beautiful by default.",
 	"author": "Kabir Goel",
 	"sideEffects": false,
