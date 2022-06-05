@@ -38,13 +38,11 @@ export function update(toast: Toast) {
 	if (toast.id) {
 		clearFromRemoveQueue(toast.id);
 	}
-	toasts.update((prevToasts) =>
-		prevToasts.map((t) => (t.id === toast.id ? { ...t, ...toast } : t))
-	);
+	toasts.update(($toasts) => $toasts.map((t) => (t.id === toast.id ? { ...t, ...toast } : t)));
 }
 
 export function add(toast: Toast) {
-	toasts.update((prevToasts) => [toast, ...prevToasts].slice(0, TOAST_LIMIT));
+	toasts.update(($toasts) => [toast, ...$toasts].slice(0, TOAST_LIMIT));
 }
 
 export function upsert(toast: Toast) {
@@ -56,27 +54,27 @@ export function upsert(toast: Toast) {
 }
 
 export function dismiss(toastId?: Toast['id']) {
-	toasts.update((prevToasts) => {
+	toasts.update(($toasts) => {
 		if (toastId) {
 			addToRemoveQueue(toastId);
 		} else {
-			prevToasts.forEach((toast) => {
+			$toasts.forEach((toast) => {
 				addToRemoveQueue(toast.id);
 			});
 		}
 
-		return prevToasts.map((t) =>
+		return $toasts.map((t) =>
 			t.id === toastId || toastId === undefined ? { ...t, visible: false } : t
 		);
 	});
 }
 
 export function remove(toastId?: Toast['id']) {
-	toasts.update((prevToasts) => {
+	toasts.update(($toasts) => {
 		if (toastId === undefined) {
 			return [];
 		}
-		return prevToasts.filter((t) => t.id !== toastId);
+		return $toasts.filter((t) => t.id !== toastId);
 	});
 }
 
@@ -87,13 +85,13 @@ export function startPause(time: number) {
 export function endPause(time: number) {
 	let diff: number;
 
-	pausedAt.update((prevPausedAt) => {
-		diff = time - (prevPausedAt || 0);
+	pausedAt.update(($pausedAt) => {
+		diff = time - ($pausedAt || 0);
 		return null;
 	});
 
-	toasts.update((prevToasts) =>
-		prevToasts.map((t) => ({
+	toasts.update(($toasts) =>
+		$toasts.map((t) => ({
 			...t,
 			pauseDuration: t.pauseDuration + diff
 		}))
