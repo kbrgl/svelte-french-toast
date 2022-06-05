@@ -17,6 +17,7 @@ const createToast = (message: Message, type: ToastType = 'blank', opts?: ToastOp
 	createdAt: Date.now(),
 	visible: true,
 	type,
+	height: 45,
 	ariaProps: {
 		role: 'status',
 		'aria-live': 'polite'

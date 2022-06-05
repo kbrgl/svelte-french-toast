@@ -29,7 +29,6 @@
 			defaultPosition: position
 		})}
 		<div
-			bind:clientHeight={toast.height}
 			class="wrapper"
 			class:active={toast.visible}
 			class:transition={!prefersReducedMotion()}
