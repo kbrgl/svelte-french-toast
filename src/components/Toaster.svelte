@@ -13,6 +13,15 @@
 	export let containerClassName: string | undefined = undefined;
 
 	const { toasts, handlers } = useToaster(toastOptions);
+	$: _toasts = $toasts.map((toast) => ({
+		...toast,
+		position: toast.position || position,
+		offset: handlers.calculateOffset(toast, $toasts, {
+			reverseOrder,
+			gutter,
+			defaultPosition: position
+		})
+	}));
 </script>
 
 <div
@@ -21,30 +30,24 @@
 	on:mouseenter={handlers.startPause}
 	on:mouseleave={handlers.endPause}
 >
-	{#each $toasts as toast (toast.id)}
-		{@const toastPosition = toast.position || position}
-		{@const toastOffset = handlers.calculateOffset(toast, $toasts, {
-			reverseOrder,
-			gutter,
-			defaultPosition: position
-		})}
+	{#each _toasts as toast (toast.id)}
 		<div
 			class="wrapper"
 			class:active={toast.visible}
 			class:transition={!prefersReducedMotion()}
-			style:--factor={toastPosition.includes('top') ? 1 : -1}
-			style:--offset={toastOffset}
-			style:top={(toastPosition.includes('top') && 0) || null}
-			style:bottom={(toastPosition.includes('bottom') && 0) || null}
-			style:justify-content={(toastPosition.includes('center') && 'center') ||
-				(toastPosition.includes('right') && 'flex-end') ||
+			style:--factor={toast.position.includes('top') ? 1 : -1}
+			style:--offset={toast.offset}
+			style:top={(toast.position.includes('top') && 0) || null}
+			style:bottom={(toast.position.includes('bottom') && 0) || null}
+			style:justify-content={(toast.position.includes('center') && 'center') ||
+				(toast.position.includes('right') && 'flex-end') ||
 				null}
 		>
 			{#if toast.type === 'custom'}
 				<ToastMessage {toast} />
 			{:else}
 				<slot {toast}>
-					<ToastBar {toast} position={toastPosition} />
+					<ToastBar {toast} position={toast.position} />
 				</slot>
 			{/if}
 		</div>
