@@ -34,7 +34,7 @@ const clearFromRemoveQueue = (toastId: string) => {
 	}
 };
 
-export function update(toast: Toast) {
+export function update(toast: Partial<Toast>) {
 	if (toast.id) {
 		clearFromRemoveQueue(toast.id);
 	}
