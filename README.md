@@ -42,7 +42,6 @@ function handleClick() {
 ## To-dos
 
 - [ ] Use `svelte/animate` instead of CSS animations
-- [ ] Fix height calculation bug [(blocked)](https://github.com/sveltejs/svelte/pull/5963)
 
 ## Thanks
 
