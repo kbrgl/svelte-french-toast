@@ -13,6 +13,14 @@
 	onMount(() => {
 		setHeight(wrapperEl.getBoundingClientRect().height);
 	});
+
+	$: top = (toast.position.includes('top') && 0) || null;
+	$: bottom = (toast.position.includes('bottom') && 0) || null;
+	$: factor = toast.position.includes('top') ? 1 : -1;
+	$: justifyContent =
+		(toast.position.includes('center') && 'center') ||
+		(toast.position.includes('right') && 'flex-end') ||
+		null;
 </script>
 
 <div
@@ -20,13 +28,11 @@
 	class="wrapper"
 	class:active={toast.visible}
 	class:transition={!prefersReducedMotion()}
-	style:--factor={toast.position.includes('top') ? 1 : -1}
+	style:--factor={factor}
 	style:--offset={toast.offset}
-	style:top={(toast.position.includes('top') && 0) || null}
-	style:bottom={(toast.position.includes('bottom') && 0) || null}
-	style:justify-content={(toast.position.includes('center') && 'center') ||
-		(toast.position.includes('right') && 'flex-end') ||
-		null}
+	style:top
+	style:bottom
+	style:justify-content={justifyContent}
 >
 	{#if toast.type === 'custom'}
 		<ToastMessage {toast} />
