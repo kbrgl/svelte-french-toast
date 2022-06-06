@@ -1,5 +1,5 @@
 <script lang="ts">
-	import toast from '../../../src';
+	import toast from 'svelte-buttered-toast';
 
 	function copy(text: string) {
 		const promise = navigator.clipboard.writeText(text);

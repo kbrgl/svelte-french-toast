@@ -1,6 +1,5 @@
 <script lang="ts">
-	import type { Toast } from '../../../src';
-	import toast_ from '../../../src';
+	import toast_, { type Toast } from 'svelte-buttered-toast';
 
 	export let toast: Toast;
 </script>

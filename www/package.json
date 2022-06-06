@@ -1,5 +1,6 @@
 {
 	"name": "www",
+	"private": true,
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "svelte-kit dev",
@@ -18,12 +19,7 @@
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@types/prismjs": "^1.26.0",
-		"@typescript-eslint/eslint-plugin": "^5.10.1",
-		"@typescript-eslint/parser": "^5.10.1",
 		"autoprefixer": "^10.4.7",
-		"eslint": "^8.12.0",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-svelte3": "^4.0.0",
 		"postcss": "^8.4.14",
 		"prettier": "^2.5.1",
 		"prettier-plugin-svelte": "^2.5.0",
@@ -37,6 +33,7 @@
 	"type": "module",
 	"dependencies": {
 		"prism-svelte": "^0.5.0",
-		"prismjs": "^1.28.0"
+		"prismjs": "^1.28.0",
+		"svelte-buttered-toast": "workspace:*"
 	}
 }

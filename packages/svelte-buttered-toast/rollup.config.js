@@ -14,7 +14,7 @@ const name = pkg.name
 const isProduction = process.env.NODE_ENV !== 'development';
 
 export default {
-	input: 'src/index.ts',
+	input: 'index.ts',
 	output: [
 		{ file: pkg.module, format: 'es', sourcemap: !isProduction, exports: 'named' },
 		{ file: pkg.main, format: 'umd', name, sourcemap: !isProduction, exports: 'named' }
