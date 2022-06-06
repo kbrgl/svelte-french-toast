@@ -1,9 +1,7 @@
 <script lang="ts">
 	import useToaster from '../core/use-toaster';
-	import ToastBar from '../components/ToastBar.svelte';
-	import type { ToastOptions, ToastPosition } from '../core/types';
-	import { prefersReducedMotion } from '../core/utils';
-	import ToastMessage from './ToastMessage.svelte';
+	import type { DOMToast, ToastOptions, ToastPosition } from '../core/types';
+	import ToastWrapper from './ToastWrapper.svelte';
 
 	export let reverseOrder: boolean = false;
 	export let position: ToastPosition = 'top-center';
@@ -13,6 +11,9 @@
 	export let containerClassName: string | undefined = undefined;
 
 	const { toasts, handlers } = useToaster(toastOptions);
+
+	let _toasts: DOMToast[];
+
 	$: _toasts = $toasts.map((toast) => ({
 		...toast,
 		position: toast.position || position,
@@ -31,26 +32,7 @@
 	on:mouseleave={handlers.endPause}
 >
 	{#each _toasts as toast (toast.id)}
-		<div
-			class="wrapper"
-			class:active={toast.visible}
-			class:transition={!prefersReducedMotion()}
-			style:--factor={toast.position.includes('top') ? 1 : -1}
-			style:--offset={toast.offset}
-			style:top={(toast.position.includes('top') && 0) || null}
-			style:bottom={(toast.position.includes('bottom') && 0) || null}
-			style:justify-content={(toast.position.includes('center') && 'center') ||
-				(toast.position.includes('right') && 'flex-end') ||
-				null}
-		>
-			{#if toast.type === 'custom'}
-				<ToastMessage {toast} />
-			{:else}
-				<slot {toast}>
-					<ToastBar {toast} position={toast.position} />
-				</slot>
-			{/if}
-		</div>
+		<ToastWrapper {toast} setHeight={(height) => handlers.updateHeight(toast.id, height)} />
 	{/each}
 </div>
 
@@ -65,25 +47,5 @@
 		right: var(--default-offset);
 		bottom: var(--default-offset);
 		pointer-events: none;
-	}
-
-	.wrapper {
-		left: 0;
-		right: 0;
-		display: flex;
-		position: absolute;
-		transform: translateY(calc(var(--offset, 16px) * var(--factor) * 1px));
-	}
-
-	.transition {
-		transition: all 230ms cubic-bezier(0.21, 1.02, 0.73, 1);
-	}
-
-	.active {
-		z-index: 9999;
-	}
-
-	.active > :global(*) {
-		pointer-events: auto;
 	}
 </style>

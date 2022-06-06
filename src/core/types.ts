@@ -51,6 +51,8 @@ export interface Toast {
 	height?: number;
 }
 
+export type DOMToast = Toast & { offset: number };
+
 export type ToastOptions = Partial<
 	Pick<
 		Toast,
