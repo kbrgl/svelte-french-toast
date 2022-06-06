@@ -21,10 +21,6 @@
 	}
 </script>
 
-<!-- TODO: Not sure if class attributes are compiled only once. If they are, then the
-dynamic attribute will have to be replaced with directives. -->
-<!-- TODO: The style attribute might break if there are too many separating semicolons.
-Not sure though. -->
 <div
 	class="base {toast.height ? animation : 'transparent'} {toast.className || ''}"
 	style="{style}; {toast.style}"
@@ -46,7 +42,6 @@ Not sure though. -->
 <style>
 	@keyframes enterAnimation {
 		0% {
-			/** TODO: Potential bug with factor calculation */
 			transform: translate3d(0, calc(var(--factor) * -200%), 0) scale(0.6);
 			opacity: 0.5;
 		}
