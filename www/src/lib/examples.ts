@@ -40,7 +40,7 @@ const examples: Example[] = [
 );`,
 		action: () => {
 			const promise = new Promise((resolve, reject) => {
-				setTimeout(Math.random() > 0.8 ? resolve : reject, 1000);
+				setTimeout(Math.random() < 0.8 ? resolve : reject, 1000);
 			});
 
 			toast.promise(promise, {

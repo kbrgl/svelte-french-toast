@@ -10,7 +10,7 @@
 	function launchToast() {
 		toast.promise(
 			new Promise((resolve, reject) => {
-				setTimeout(Math.random() > 0.8 ? resolve : reject, 1000);
+				setTimeout(Math.random() < 0.8 ? resolve : reject, 1000);
 			}),
 			{ loading: 'Toasting bread...', success: 'Here’s your toast!', error: 'Your toast burned :(' }
 		);
