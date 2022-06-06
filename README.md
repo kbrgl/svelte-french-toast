@@ -1,4 +1,4 @@
-<img src="./www/static/logo.png" alt="" height="128" width="auto" style="padding-bottom: 10px;" align="right">
+<img src="./www/static/favicon.png" alt="" height="128" width="auto" style="padding-bottom: 10px;" align="right">
 
 # svelte-buttered-toast
 
