@@ -1,43 +1,96 @@
-import { endPause as _endPause, startPause as _startPause, useToasterStore } from './store';
+import toast from './toast';
+import { endPause as _endPause, startPause as _startPause, update, useToasterStore } from './store';
 import type { Toast, ToastOptions, ToastPosition } from './types';
+import { onDestroy } from 'svelte';
+
+function calculateOffset(
+	toast: Toast,
+	$toasts: Toast[],
+	opts?: {
+		reverseOrder?: boolean;
+		gutter?: number;
+		defaultPosition?: ToastPosition;
+	}
+) {
+	const { reverseOrder, gutter = 8, defaultPosition } = opts || {};
+
+	const relevantToasts = $toasts.filter(
+		(t) => (t.position || defaultPosition) === (toast.position || defaultPosition) && t.height
+	);
+	const toastIndex = relevantToasts.findIndex((t) => t.id === toast.id);
+	const toastsBefore = relevantToasts.filter((toast, i) => i < toastIndex && toast.visible).length;
+
+	const offset = relevantToasts
+		.filter((t) => t.visible)
+		.slice(...(reverseOrder ? [toastsBefore + 1] : [0, toastsBefore]))
+		.reduce((acc, t) => acc + (t.height || 0) + gutter, 0);
+
+	return offset;
+}
+
+const handlers = {
+	startPause() {
+		_startPause(Date.now());
+	},
+	endPause() {
+		_endPause(Date.now());
+	},
+	updateHeight: (toastId: string, height: number) => {
+		update({ id: toastId, height });
+	},
+	calculateOffset
+};
 
 export default function useToaster(toastOptions?: ToastOptions) {
-	const { toasts } = useToasterStore(toastOptions);
+	const { toasts, pausedAt } = useToasterStore(toastOptions);
+	const timeouts = new Map<Toast['id'], ReturnType<typeof setTimeout>>();
+	let _pausedAt: number;
 
-	const handlers = {
-		startPause() {
-			_startPause(Date.now());
-		},
-		endPause() {
-			_endPause(Date.now());
-		},
-		calculateOffset(
-			toast: Toast,
-			toasts: Toast[],
-			opts?: {
-				reverseOrder?: boolean;
-				gutter?: number;
-				defaultPosition?: ToastPosition;
+	const unsubscribes = [
+		pausedAt.subscribe(($pausedAt) => {
+			if ($pausedAt) {
+				for (const [, timeoutId] of timeouts) {
+					clearTimeout(timeoutId);
+				}
+				timeouts.clear();
 			}
-		) {
-			const { reverseOrder, gutter = 8, defaultPosition } = opts || {};
+			_pausedAt = $pausedAt;
+		}),
+		toasts.subscribe(($toasts) => {
+			if (_pausedAt) {
+				return;
+			}
 
-			const relevantToasts = toasts.filter(
-				(t) => (t.position || defaultPosition) === (toast.position || defaultPosition) && t.height
-			);
-			const toastIndex = relevantToasts.findIndex((t) => t.id === toast.id);
-			const toastsBefore = relevantToasts.filter(
-				(toast, i) => i < toastIndex && toast.visible
-			).length;
+			const now = Date.now();
+			for (const t of $toasts) {
+				if (timeouts.has(t.id)) {
+					continue;
+				}
+				if (t.duration === Infinity) {
+					continue;
+				}
 
-			const offset = relevantToasts
-				.filter((t) => t.visible)
-				.slice(...(reverseOrder ? [toastsBefore + 1] : [0, toastsBefore]))
-				.reduce((acc, t) => acc + (t.height || 0) + gutter, 0);
+				const durationLeft = (t.duration || 0) + t.pauseDuration - (now - t.createdAt);
 
-			return offset;
+				if (durationLeft < 0) {
+					if (t.visible) {
+						// FIXME: This causes a recursive cycle of updates.
+						toast.dismiss(t.id);
+					}
+					return null;
+				}
+				timeouts.set(
+					t.id,
+					setTimeout(() => toast.dismiss(t.id), durationLeft)
+				);
+			}
+		})
+	];
+	onDestroy(() => {
+		for (const unsubscribe of unsubscribes) {
+			unsubscribe();
 		}
-	};
+	});
 
 	return { toasts, handlers };
 }
