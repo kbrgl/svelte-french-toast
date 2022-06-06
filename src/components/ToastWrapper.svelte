@@ -14,8 +14,8 @@
 		setHeight(wrapperEl.getBoundingClientRect().height);
 	});
 
-	$: top = (toast.position.includes('top') && 0) || null;
-	$: bottom = (toast.position.includes('bottom') && 0) || null;
+	$: top = toast.position.includes('top') ? 0 : null;
+	$: bottom = toast.position.includes('bottom') ? 0 : null;
 	$: factor = toast.position.includes('top') ? 1 : -1;
 	$: justifyContent =
 		(toast.position.includes('center') && 'center') ||
