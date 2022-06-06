@@ -1,4 +1,14 @@
-<img src="./www/static/favicon.png" alt="" height="128" width="auto" style="padding-bottom: 10px;" align="right">
+<center>
+<img src="./header-image.png" alt="" height="400px" width="auto" style="border-radius: 8px" />
+<div style="margin-top: 20px">
+<img src="https://badgen.net/badge/license/MIT/blue" />
+<img src="https://badgen.net/npm/v/svelte-buttered-toast" />
+<img src="https://badgen.net/bundlephobia/minzip/svelte-buttered-toast?color=green" />
+</div>
+<div style="margin-top: 10px">
+<a href="https://svelte-buttered-toast.vercel.app">Website</a> · <a class="https://npmjs.com/package/svelte-buttered-toast">NPM Package</a>
+</div>
+</center>
 
 # svelte-buttered-toast
 
@@ -39,9 +49,7 @@ function handleClick() {
 <button type="button" on:click={handleClick}>Toast</button>
 ```
 
-## To-dos
-
-- [ ] Use `svelte/animate` instead of CSS animations
+For more usage examples, see [the website](https://svelte-buttered-toast.vercel.app).
 
 ## Thanks
 
