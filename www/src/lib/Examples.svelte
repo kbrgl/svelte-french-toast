@@ -12,7 +12,6 @@
 			for={example.title}
 			class:checked={example.title === selected}
 			on:mouseup={() => {
-				console.log('clicked');
 				example.action();
 			}}
 		>
