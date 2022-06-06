@@ -26,7 +26,7 @@
 </script>
 
 <div
-	class={`toaster ${containerClassName || ''}`}
+	class="toaster {containerClassName || ''}"
 	style={containerStyle}
 	on:mouseenter={handlers.startPause}
 	on:mouseleave={handlers.endPause}

@@ -26,8 +26,8 @@ dynamic attribute will have to be replaced with directives. -->
 <!-- TODO: The style attribute might break if there are too many separating semicolons.
 Not sure though. -->
 <div
-	class={`base ${toast.height ? animation : 'transparent'} ${toast.className || ''}`}
-	style={`${style}; ${toast.style}`}
+	class="base {toast.height ? animation : 'transparent'} {toast.className || ''}"
+	style="{style}; {toast.style}"
 	style:--factor={factor}
 >
 	{#if Component}
