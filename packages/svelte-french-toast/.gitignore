@@ -3,3 +3,5 @@ node_modules
 /dist
 /src/**/*.js
 /src/**/*.js.map
+/README.md
+/*.png
