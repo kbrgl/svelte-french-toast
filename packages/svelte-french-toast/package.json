@@ -1,6 +1,6 @@
 {
 	"name": "svelte-french-toast",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Buttery smooth Svelte toasts. Lightweight, customizable, and beautiful by default.",
 	"author": "Kabir Goel",
 	"sideEffects": false,
@@ -9,7 +9,7 @@
 	"module": "dist/svelte-french-toast.mjs",
 	"svelte": "index.ts",
 	"scripts": {
-		"build": "tsc && rollup -c && cp ../../README.md ../../header-image.png .",
+		"build": "rm -rf dist && tsc && rollup -c && cp ../../README.md ../../header-image.png .",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"svelte-check": "svelte-check"
 	},
