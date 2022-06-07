@@ -165,7 +165,7 @@
 	}
 
 	input[type='radio'] {
-		@apply appearance-none;
+		@apply appearance-none hidden;
 	}
 	label {
 		cursor: pointer;
