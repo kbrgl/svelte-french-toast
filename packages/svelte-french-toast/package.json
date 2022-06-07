@@ -1,19 +1,19 @@
 {
-	"name": "svelte-buttered-toast",
+	"name": "svelte-french-toast",
 	"version": "0.2.0",
 	"description": "Buttery smooth Svelte toasts. Lightweight, customizable, and beautiful by default.",
 	"author": "Kabir Goel",
 	"sideEffects": false,
 	"license": "MIT",
 	"main": "dist/index.js",
-	"module": "dist/svelte-buttered-toast.mjs",
+	"module": "dist/svelte-french-toast.mjs",
 	"svelte": "index.ts",
 	"scripts": {
 		"build": "tsc && rollup -c",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"svelte-check": "svelte-check"
 	},
-	"repository": "kbrgl/svelte-buttered-toast",
+	"repository": "kbrgl/svelte-french-toast",
 	"keywords": [
 		"svelte",
 		"notifications",

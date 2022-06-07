@@ -1,11 +1,11 @@
 <script lang="ts">
-	import toast, { Toaster } from 'svelte-buttered-toast';
+	import toast, { Toaster } from 'svelte-french-toast';
 	import 'prismjs';
 	import 'prism-svelte';
 	import demoCode from '../lib/demo-code';
 	import Copy from '../lib/Copy.svelte';
 	import Examples from '../lib/Examples.svelte';
-	import pkg from '../../../packages/svelte-buttered-toast/package.json';
+	import pkg from '../../../packages/svelte-french-toast/package.json';
 
 	function launchToast() {
 		toast.promise(
@@ -17,9 +17,9 @@
 	}
 
 	const installers = [
-		{ name: 'NPM', cmd: 'npm install svelte-buttered-toast' },
-		{ name: 'PNPM', cmd: 'pnpm install svelte-buttered-toast' },
-		{ name: 'Yarn', cmd: 'yarn add svelte-buttered-toast' }
+		{ name: 'NPM', cmd: 'npm install svelte-french-toast' },
+		{ name: 'PNPM', cmd: 'pnpm install svelte-french-toast' },
+		{ name: 'Yarn', cmd: 'yarn add svelte-french-toast' }
 	];
 	let installer = installers[0].name;
 </script>
@@ -40,7 +40,7 @@
 			<div
 				class="p-4 text-xl md:text-2xl font-extrabold bg-[#fd6819] uppercase tracking-widest rounded-xl rotate-3 shadow-lg"
 			>
-				Buttered
+				French
 			</div>
 			<div
 				class="p-4 text-xl md:text-2xl font-extrabold bg-[#322f35] uppercase tracking-widest rounded-xl -rotate-2 shadow-lg"
@@ -77,7 +77,7 @@
 				<span>Launch toast</span>
 			</button>
 			<a
-				href="https://github.com/kbrgl/svelte-buttered-toast"
+				href="https://github.com/kbrgl/svelte-french-toast"
 				class="flex items-center space-x-2 text-gray-500"
 			>
 				<svg class="h-5 w-5" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +90,7 @@
 			</a>
 		</div>
 		<p class="mt-5 text-sm border rounded-full px-2 py-1 text-gray-500">
-			<a href="https://npmjs.com/package/svelte-buttered-toast">Version {pkg.version}</a>
+			<a href="https://npmjs.com/package/svelte-french-toast">Version {pkg.version}</a>
 		</p>
 		<div class="grid grid-cols-2 md:grid-cols-3 gap-4 self-stretch mt-10 font-medium">
 			{#each ['Emoji Support', 'Customizable', 'Promise API', 'Pause on hover', 'Accessible', 'Headless use'] as feature}
@@ -149,10 +149,10 @@
 	<h1 class="text-4xl font-bold mb-5">Examples</h1>
 	<Examples />
 	<p class="mt-24 mb-2 text-center">
-		<a href="https://github.com/kbrgl/svelte-buttered-toast" class="underline">GitHub</a>
+		<a href="https://github.com/kbrgl/svelte-french-toast" class="underline">GitHub</a>
 	</p>
 	<p class="text-center text-gray-500">
-		© 2022 svelte-buttered-toast · Built by <a class="text-gray-800" href="https://kabirgoel.com"
+		© 2022 svelte-french-toast · Built by <a class="text-gray-800" href="https://kabirgoel.com"
 			>Kabir Goel</a
 		>
 	</p>

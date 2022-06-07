@@ -1,35 +1,33 @@
-<center>
-<img src="./header-image.png" alt="" height="400px" width="auto" style="border-radius: 8px" />
-<div style="margin-top: 20px">
+<img src="./header-image.png" alt="" />
+<p align="center">
 <img src="https://badgen.net/badge/license/MIT/blue" />
-<img src="https://badgen.net/npm/v/svelte-buttered-toast" />
-<img src="https://badgen.net/bundlephobia/minzip/svelte-buttered-toast?color=green" />
-</div>
-<div style="margin-top: 10px">
-<a href="https://svelte-buttered-toast.vercel.app">Website</a> · <a class="https://npmjs.com/package/svelte-buttered-toast">NPM Package</a>
-</div>
-</center>
+<img src="https://badgen.net/npm/v/svelte-french-toast" />
+<img src="https://badgen.net/bundlephobia/minzip/svelte-french-toast?color=green" />
+</p>
+<p align="center">
+<a href="https://svelte-french-toast.vercel.app">Website</a> · <a href="https://npmjs.com/package/svelte-french-toast">NPM Package</a>
+</p>
 
-# svelte-buttered-toast
+# svelte-french-toast
 
 > Buttery smooth Svelte notifications.
 
-svelte-buttered-toast is a Svelte port of Timo Lins’s react-hot-toast, a lightweight, customizable, and beautiful-by-default toast notification library.
+svelte-french-toast is a Svelte port of Timo Lins’s react-hot-toast, a lightweight, customizable, and beautiful-by-default toast notification library.
 
 ## Installation
 
 Install the package with your favorite package manager:
 
 ```
-npm install svelte-buttered-toast
+npm install svelte-french-toast
 ```
 
 ```
-pnpm install svelte-buttered-toast
+pnpm install svelte-french-toast
 ```
 
 ```
-yarn add svelte-buttered-toast
+yarn add svelte-french-toast
 ```
 
 ## Basic usage
@@ -38,7 +36,7 @@ Mount a `<Toaster />` at the top level of your app and use the `toast` API to di
 
 ```js
 <script>
-import toast, {Toaster} from 'svelte-buttered-toast'
+import toast, {Toaster} from 'svelte-french-toast'
 
 function handleClick() {
     toast.success('Hello, world!')
@@ -49,7 +47,7 @@ function handleClick() {
 <button type="button" on:click={handleClick}>Toast</button>
 ```
 
-For more usage examples, see [the website](https://svelte-buttered-toast.vercel.app).
+For more usage examples, see [the website](https://svelte-french-toast.vercel.app).
 
 ## Thanks
 

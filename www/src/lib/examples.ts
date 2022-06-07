@@ -1,4 +1,4 @@
-import toast from 'svelte-buttered-toast';
+import toast from 'svelte-french-toast';
 import RichContent from './RichContent.svelte';
 
 export interface Example {
@@ -98,7 +98,7 @@ const examples: Example[] = [
 		title: 'Rich content',
 		emoji: '🔩',
 		snippet: `<script>
-    import toast_ from 'svelte-buttered-toast';
+    import toast_ from 'svelte-french-toast';
 
     export let toast;
 

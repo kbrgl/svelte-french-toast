@@ -1,5 +1,5 @@
 <script lang="ts">
-	import toast_, { type Toast } from 'svelte-buttered-toast';
+	import toast_, { type Toast } from 'svelte-french-toast';
 
 	export let toast: Toast;
 </script>
