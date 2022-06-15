@@ -1,11 +1,11 @@
 <script lang="ts">
-	import toast, { Toaster } from 'svelte-french-toast';
+	import toast, { Toaster } from '../lib';
 	import 'prismjs';
 	import 'prism-svelte';
-	import demoCode from '../lib/demo-code';
-	import Copy from '../lib/Copy.svelte';
-	import Examples from '../lib/Examples.svelte';
-	import pkg from '../../../packages/svelte-french-toast/package.json';
+	import demoCode from '../www/demo-code';
+	import Copy from '../www/Copy.svelte';
+	import Examples from '../www/Examples.svelte';
+	import pkg from '../../package.json';
 
 	function launchToast() {
 		toast.promise(

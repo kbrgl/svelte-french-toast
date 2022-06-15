@@ -10,7 +10,14 @@ const config = {
 	}),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		vite: {
+			server: {
+				fs: {
+					strict: false
+				}
+			}
+		}
 	}
 };
 

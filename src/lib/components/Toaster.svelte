@@ -3,10 +3,10 @@
 	import type { DOMToast, ToastOptions, ToastPosition } from '../core/types';
 	import ToastWrapper from './ToastWrapper.svelte';
 
-	export let reverseOrder: boolean = false;
+	export let reverseOrder = false;
 	export let position: ToastPosition = 'top-center';
 	export let toastOptions: ToastOptions | undefined = undefined;
-	export let gutter: number = 8;
+	export let gutter = 8;
 	export let containerStyle: string | undefined = undefined;
 	export let containerClassName: string | undefined = undefined;
 

@@ -44,7 +44,7 @@ const handlers = {
 export default function useToaster(toastOptions?: ToastOptions) {
 	const { toasts, pausedAt } = useToasterStore(toastOptions);
 	const timeouts = new Map<Toast['id'], ReturnType<typeof setTimeout>>();
-	let _pausedAt: number;
+	let _pausedAt: number | null;
 
 	const unsubscribes = [
 		pausedAt.subscribe(($pausedAt) => {

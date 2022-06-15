@@ -1,4 +1,4 @@
-import toast from 'svelte-french-toast';
+import toast from '../lib';
 import RichContent from './RichContent.svelte';
 
 export interface Example {

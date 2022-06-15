@@ -6,9 +6,12 @@ Conversion: Bram de Haan (http://atelierbram.github.io/Base2Tone-prism/output/pr
 Generated with Base16 Builder (https://github.com/base16-builder/base16-builder)
 */
 
-code[class*="language-"],
-pre[class*="language-"] {
-	font-family: ui-monospace, SFMono-Regular, Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+code[class*='language-'],
+pre[class*='language-'] {
+	font-family: ui-monospace, SFMono-Regular, Consolas, Menlo, Monaco, 'Andale Mono WT',
+		'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono',
+		'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', 'Courier New', Courier,
+		monospace;
 	font-size: 16px;
 	line-height: 1.375;
 	direction: ltr;
@@ -29,32 +32,36 @@ pre[class*="language-"] {
 	color: #ddddf0;
 }
 
-pre > code[class*="language-"] {
+pre > code[class*='language-'] {
 	font-size: 1em;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
 	text-shadow: none;
 	background: #5151e6;
 }
 
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
 	text-shadow: none;
 	background: #5151e6;
 }
 
 /* Code blocks */
-pre[class*="language-"] {
+pre[class*='language-'] {
 	border-radius: 8px;
 	padding: 1em;
-	margin: .5em 0;
+	margin: 0.5em 0;
 	overflow: auto;
 }
 
 /* Inline code */
-:not(pre) > code[class*="language-"] {
+:not(pre) > code[class*='language-'] {
 	padding: 2em;
 	border-radius: 8px;
 }
@@ -71,7 +78,7 @@ pre[class*="language-"] {
 }
 
 .token.namespace {
-	opacity: .7;
+	opacity: 0.7;
 }
 
 .token.tag,
@@ -151,8 +158,8 @@ code.language-scss,
 }
 
 pre > code.highlight {
-	outline: .4em solid #7676f4;
-	outline-offset: .4em;
+	outline: 0.4em solid #7676f4;
+	outline-offset: 0.4em;
 }
 
 /* overrides color-values for the Line Numbers plugin

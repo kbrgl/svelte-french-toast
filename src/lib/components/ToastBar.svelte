@@ -7,7 +7,7 @@
 
 	export let toast: Toast;
 	export let position: ToastPosition | undefined = undefined;
-	export let style: string = '';
+	export let style = '';
 	export let Component: typeof SvelteComponent | undefined = undefined;
 
 	let factor: number;
