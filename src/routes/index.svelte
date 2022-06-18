@@ -30,7 +30,7 @@
 	<div class="container max-w-xl flex flex-col items-center mx-auto text-center">
 		<img class="h-16 mb-10" src="favicon.png" alt="" />
 		<div
-			class="flex flex-col md:flex-row gap-3 items-center mb-10 text-white"
+			class="flex flex-wrap justify-center gap-3 items-center mb-10 text-white"
 		>
 			<div
 				class="p-4 text-xl md:text-2xl font-extrabold bg-[#322f35] uppercase tracking-widest rounded-xl -rotate-2 shadow-lg select-none"
