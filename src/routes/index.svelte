@@ -60,7 +60,7 @@
 		<div class="flex items-center mt-10 gap-4">
 			<button
 				on:click={launchToast}
-				class="flex items-center gap-2 text-lg py-2 font-bold px-5 rounded-xl bg-amber-300 border-2 border-amber-400 shadow"
+				class="flex items-center gap-2 h-12 px-5 text-lg font-bold rounded-xl bg-amber-300 border-2 border-amber-400 shadow"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@
 			</button>
 			<a
 				href="https://github.com/kbrgl/svelte-french-toast"
-				class="flex items-center gap-2 text-gray-500"
+				class="flex items-center gap-2 h-12 px-2 text-gray-500"
 			>
 				<svg class="h-5 w-5" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
 					><title>GitHub</title><path
