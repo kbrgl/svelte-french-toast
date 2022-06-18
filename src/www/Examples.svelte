@@ -30,7 +30,7 @@
 {#each examples as example}
 	<div class:hidden={example.title !== selected}>
 		<div class="overflow-auto">
-			<pre class="language-{example.html ? 'svelte' : 'javascript'} h-80 table w-full"><code
+			<pre class="language-{example.html ? 'svelte' : 'javascript'} table w-full"><code
 					class="table-cell align-middle">{example.snippet}</code
 				></pre>
 		</div>
