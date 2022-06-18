@@ -33,17 +33,17 @@
 			class="flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-3 mb-10 text-white"
 		>
 			<div
-				class="p-4 text-xl md:text-2xl font-extrabold bg-[#322f35] uppercase tracking-widest rounded-xl -rotate-2 shadow-lg"
+				class="p-4 text-xl md:text-2xl font-extrabold bg-[#322f35] uppercase tracking-widest rounded-xl -rotate-2 shadow-lg select-none"
 			>
 				Svelte
 			</div>
 			<div
-				class="p-4 text-xl md:text-2xl font-extrabold bg-[#fd6819] uppercase tracking-widest rounded-xl rotate-3 shadow-lg"
+				class="p-4 text-xl md:text-2xl font-extrabold bg-[#fd6819] uppercase tracking-widest rounded-xl rotate-3 shadow-lg select-none"
 			>
 				French
 			</div>
 			<div
-				class="p-4 text-xl md:text-2xl font-extrabold bg-[#322f35] uppercase tracking-widest rounded-xl -rotate-2 shadow-lg"
+				class="p-4 text-xl md:text-2xl font-extrabold bg-[#322f35] uppercase tracking-widest rounded-xl -rotate-2 shadow-lg select-none"
 			>
 				Toast
 			</div>
