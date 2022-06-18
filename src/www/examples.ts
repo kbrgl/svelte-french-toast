@@ -13,7 +13,7 @@ const examples: Example[] = [
 	{
 		title: 'Success',
 		emoji: '✅',
-		snippet: "toast.success('Successfully toasted!')",
+		snippet: `toast.success('Successfully toasted!')`,
 		action: () => {
 			toast.success('Successfully toasted!');
 		}
@@ -21,22 +21,21 @@ const examples: Example[] = [
 	{
 		title: 'Error',
 		emoji: '❌',
-		snippet: `toast.error("This didn't work.")`,
-
+		snippet: `toast.error('This didn't work.')`,
 		action: () => {
-			toast.error("This didn't work.");
+			toast.error(`This didn't work.`);
 		}
 	},
 	{
 		title: 'Promise',
 		emoji: '⏳',
 		snippet: `toast.promise(
-    saveSettings(settings),
-    {
-       loading: 'Saving...',
-       success: 'Settings saved!',
-       error: 'Could not save.',
-    }
+  saveSettings(settings),
+  {
+    loading: 'Saving...',
+    success: 'Settings saved!',
+    error: 'Could not save.',
+  }
 );`,
 		action: () => {
 			const promise = new Promise((resolve, reject) => {
@@ -54,14 +53,14 @@ const examples: Example[] = [
 		title: 'Multiline',
 		emoji: '↩️',
 		snippet: `toast(
-    "This toast is super big. I don't think anyone could eat it in one bite.\\n\\nIt's larger than you expected. You eat it but it does not seem to get smaller.",
-    {
-      duration: 6000,
-    }
-  );`,
+  'This toast is super big. I don't think anyone could eat it in one bite.\\n\\nIt's larger than you expected. You eat it but it does not seem to get smaller.',
+  {
+    duration: 6000,
+  }
+);`,
 		action: () => {
 			toast(
-				"This toast is super big. I don't think anyone could eat it in one bite.\n\n It's larger than you expected. You eat it but it does not seem to get smaller.",
+				`This toast is super big. I don't think anyone could eat it in one bite.\n\n It's larger than you expected. You eat it but it does not seem to get smaller.`,
 				{
 					duration: 6000
 				}
@@ -84,12 +83,12 @@ const examples: Example[] = [
 		title: 'Dark mode',
 		emoji: '🌚',
 		snippet: `toast('Hello Darkness!', {
-    icon: '👏',
+    icon: '🌚',
     style: 'border-radius: 200px; background: #333; color: #fff;'
 });`,
 		action: () => {
 			toast('Hello Darkness!', {
-				icon: '👏',
+				icon: '🌚',
 				style: 'border-radius: 200px; background: #333; color: #fff;'
 			});
 		}
@@ -98,17 +97,17 @@ const examples: Example[] = [
 		title: 'Rich content',
 		emoji: '🔩',
 		snippet: `<script>
-    import toast_ from 'svelte-french-toast';
+  import toast_ from 'svelte-french-toast';
 
-    export let toast;
+  export let toast;
 
-    // Use this component in your app:
-    //     toast(RichContent)
+  // Use this component in your app:
+  // toast(RichContent)
 </script>
 
 <span>
-    Custom and <b>bold</b>
-    <button on:click={() => toast_.dismiss(toast.id)}>Dismiss</button>
+  Custom and <b>bold</b>
+  <button on:click={() => toast_.dismiss(toast.id)}>Dismiss</button>
 </span>`,
 		html: true,
 		action: () => {
@@ -119,11 +118,11 @@ const examples: Example[] = [
 		title: 'Themed',
 		emoji: '🎨',
 		snippet: `toast.success('Look at me!', {
-    style: 'border: 1px solid #713200; padding: 16px; color: #713200;',
-    iconTheme: {
-        primary: '#713200',
-        secondary: '#FFFAEE'
-    }
+  style: 'border: 1px solid #713200; padding: 16px; color: #713200;',
+  iconTheme: {
+      primary: '#713200',
+      secondary: '#FFFAEE'
+  }
 });`,
 
 		action: () => {
@@ -140,8 +139,8 @@ const examples: Example[] = [
 		title: 'Positioning',
 		emoji: '⬆️',
 		snippet: `toast.success('Always at the bottom.', {
-    position: "bottom-center"
-  })`,
+  position: 'bottom-center'
+})`,
 		action: () => {
 			toast.success('Always at the bottom.', {
 				position: 'bottom-center',
