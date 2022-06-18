@@ -30,7 +30,7 @@
 	<div class="container max-w-xl flex flex-col items-center mx-auto text-center">
 		<img class="h-16 mb-10" src="favicon.png" alt="" />
 		<div
-			class="flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-3 mb-10 text-white"
+			class="flex flex-col md:flex-row gap-3 items-center mb-10 text-white"
 		>
 			<div
 				class="p-4 text-xl md:text-2xl font-extrabold bg-[#322f35] uppercase tracking-widest rounded-xl -rotate-2 shadow-lg select-none"
@@ -57,10 +57,10 @@
 				>React&nbsp;Hot&nbsp;Toast</a
 			>.
 		</p>
-		<div class="flex items-center mt-10 space-x-4">
+		<div class="flex items-center mt-10 gap-4">
 			<button
 				on:click={launchToast}
-				class="flex items-center space-x-2 text-lg py-2 font-bold px-5 rounded-xl bg-amber-300 border-2 border-amber-400 shadow"
+				class="flex items-center gap-2 text-lg py-2 font-bold px-5 rounded-xl bg-amber-300 border-2 border-amber-400 shadow"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +78,7 @@
 			</button>
 			<a
 				href="https://github.com/kbrgl/svelte-french-toast"
-				class="flex items-center space-x-2 text-gray-500"
+				class="flex items-center gap-2 text-gray-500"
 			>
 				<svg class="h-5 w-5" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
 					><title>GitHub</title><path
@@ -94,7 +94,7 @@
 		</p>
 		<div class="grid grid-cols-2 md:grid-cols-3 gap-4 self-stretch mt-10 font-medium">
 			{#each ['Emoji Support', 'Customizable', 'Promise API', 'Pause on hover', 'Accessible', 'Headless use'] as feature}
-				<div class="flex space-x-2">
+				<div class="flex gap-2">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="24"
@@ -116,7 +116,7 @@
 	<section>
 		<div class="flex items-center justify-between mb-4">
 			<p class="text-xl font-bold">1. Install</p>
-			<div class="space-x-1">
+			<div class="gap-1">
 				{#each installers as i}
 					<label for={i.name} class:checked={i.name === installer}>
 						<input
