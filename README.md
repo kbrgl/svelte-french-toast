@@ -2,7 +2,6 @@
 <p align="center">
 <img src="https://badgen.net/badge/license/MIT/blue" />
 <img src="https://badgen.net/npm/v/svelte-french-toast" />
-<img src="https://badgen.net/bundlephobia/minzip/svelte-french-toast?color=green" />
 </p>
 <p align="center">
 <a href="https://svelte-french-toast.vercel.app">Website</a> · <a href="https://npmjs.com/package/svelte-french-toast">NPM Package</a>
