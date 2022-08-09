@@ -41,7 +41,7 @@
 		--default-offset: 16px;
 
 		position: fixed;
-		z-index: 9999;
+		z-index: 2147483600;
 		top: var(--default-offset);
 		left: var(--default-offset);
 		right: var(--default-offset);
