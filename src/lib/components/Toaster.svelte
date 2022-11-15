@@ -32,7 +32,11 @@
 	on:mouseleave={handlers.endPause}
 >
 	{#each _toasts as toast (toast.id)}
-		<ToastWrapper {toast} setHeight={(height) => handlers.updateHeight(toast.id, height)} />
+		{#if $$slots.default}
+			<slot {toast} setHeight={(height) => handlers.updateHeight(toast.id, height)}/>
+		{:else}
+			<ToastWrapper {toast} setHeight={(height) => handlers.updateHeight(toast.id, height)} />
+		{/if}
 	{/each}
 </div>
 
