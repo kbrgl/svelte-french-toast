@@ -2,10 +2,10 @@ import { dismiss, remove, upsert } from './store';
 import {
 	type Toast,
 	type Renderable,
-	type IntoRenderable,
 	type DefaultToastOptions,
 	type ToastOptions,
 	type ToastType,
+	type ValueOrFunction,
 	resolveValue
 } from './types';
 import { genId } from './utils';
@@ -53,8 +53,8 @@ toast.promise = <T>(
 	promise: Promise<T>,
 	msgs: {
 		loading: Renderable;
-		success: IntoRenderable<T>;
-		error: IntoRenderable<unknown>;
+		success: ValueOrFunction<Renderable, T>;
+		error: ValueOrFunction<Renderable, any>;
 	},
 	opts?: DefaultToastOptions
 ) => {
