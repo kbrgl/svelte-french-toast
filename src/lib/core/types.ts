@@ -9,7 +9,8 @@ export type ToastPosition =
 	| 'bottom-center'
 	| 'bottom-right';
 
-export type Renderable = typeof SvelteComponent | string | null;
+type MyCustomMessage = (arg: any) => string	
+export type Renderable = typeof SvelteComponent |MyCustomMessage | string | null;
 
 export interface IconTheme {
 	primary: string;
