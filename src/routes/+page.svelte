@@ -19,7 +19,8 @@
 	const installers = [
 		{ name: 'NPM', cmd: 'npm install svelte-french-toast' },
 		{ name: 'PNPM', cmd: 'pnpm install svelte-french-toast' },
-		{ name: 'Yarn', cmd: 'yarn add svelte-french-toast' }
+		{ name: 'Yarn', cmd: 'yarn add svelte-french-toast' },
+		{ name: 'Bun', cmd: 'bun add svelte-french-toast' },
 	];
 	let installer = installers[0].name;
 </script>
@@ -114,7 +115,7 @@
 </div>
 <div class="container mx-auto max-w-2xl py-10">
 	<section>
-		<div class="flex items-center justify-between mb-4">
+		<div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
 			<p class="text-xl font-bold">1. Install</p>
 			<div class="space-x-1">
 				{#each installers as i}
