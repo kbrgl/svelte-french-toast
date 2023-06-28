@@ -1,6 +1,6 @@
 {
 	"name": "svelte-french-toast",
-	"version": "1.0.4",
+	"version": "1.1.0",
 	"description": "Buttery smooth Svelte toasts. Lightweight, customizable, and beautiful by default.",
 	"keywords": [
 		"svelte",
@@ -44,7 +44,7 @@
 		"svelte-writable-derived": "^3.1.0"
 	},
 	"peerDependencies": {
-		"svelte": "^4.0.0"
+		"svelte": "^3.57.0 || ^4.0.0"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.31.2",
