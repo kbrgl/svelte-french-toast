@@ -19,7 +19,7 @@
 	$: factor = toast.position?.includes('top') ? 1 : -1;
 	$: justifyContent =
 		(toast.position?.includes('center') && 'center') ||
-		(toast.position?.includes('right') && 'flex-end') ||
+		((toast.position?.includes('right') || toast.position?.includes('end')) && 'flex-end') ||
 		null;
 </script>
 
