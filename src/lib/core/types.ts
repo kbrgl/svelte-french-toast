@@ -1,13 +1,24 @@
 import type { SvelteComponent } from 'svelte';
 
 export type ToastType = 'success' | 'error' | 'loading' | 'blank' | 'custom';
+/** Specifies the toast's position on the screen
+ *
+ * Logical positions (`start`, `end`) are recommended over absolute positions
+ * (`left`, `right`), as they automatically adjust based on the text direction
+ * of the locale (LTR or RTL). Examples:
+ * - Use `top-start` instead of `top-left`.
+ * - Use `top-end` instead of `top-right`. */
 export type ToastPosition =
 	| 'top-left'
 	| 'top-center'
 	| 'top-right'
 	| 'bottom-left'
 	| 'bottom-center'
-	| 'bottom-right';
+	| 'bottom-right'
+	| 'top-start'
+	| 'top-end'
+	| 'bottom-start'
+	| 'bottom-end';
 
 export type Renderable = typeof SvelteComponent | string | null;
 
