@@ -5,6 +5,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    # Use a container to significantly speed up the workflow. The downside is
+    # that the playwright version needs to be manually kept in sync.
+    container:
+      image: mcr.microsoft.com/playwright:v1.35.1
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -15,10 +19,9 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: pnpm install
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
       - name: Run Playwright tests
-        run: pnpm run test
+        # BUG: firefox tests fail in container. To fix, we manually set HOME variable: https://github.com/microsoft/playwright/issues/6500#issuecomment-1577284385
+        run: env HOME=/root pnpm run test
       - uses: actions/upload-artifact@v3
         if: always()
         with:
