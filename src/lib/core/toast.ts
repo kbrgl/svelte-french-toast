@@ -10,11 +10,13 @@ import {
 } from './types';
 import { genId } from './utils';
 
-type Message = Renderable;
+type ToastHandler = (message: Renderable, options?: ToastOptions) => string;
 
-type ToastHandler = (message: Message, options?: ToastOptions) => string;
-
-const createToast = (message: Message, type: ToastType = 'blank', opts?: ToastOptions): Toast => ({
+const createToast = (
+	message: Renderable,
+	type: ToastType = 'blank',
+	opts?: ToastOptions
+): Toast => ({
 	createdAt: Date.now(),
 	visible: true,
 	type,
@@ -36,7 +38,7 @@ const createHandler =
 		return toast.id;
 	};
 
-const toast = (message: Message, opts?: ToastOptions) => createHandler('blank')(message, opts);
+const toast = (message: Renderable, opts?: ToastOptions) => createHandler('blank')(message, opts);
 
 toast.error = createHandler('error');
 toast.success = createHandler('success');
@@ -54,6 +56,7 @@ toast.promise = <T>(
 	msgs: {
 		loading: Renderable;
 		success: ValueOrFunction<Renderable, T>;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		error: ValueOrFunction<Renderable, any>;
 	},
 	opts?: DefaultToastOptions
