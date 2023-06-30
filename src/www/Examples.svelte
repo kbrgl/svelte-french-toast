@@ -3,17 +3,16 @@
 	import examples, { type Example } from './examples';
 
 	let selected: Example['title'] = 'Success';
+
+	$: examples.find((eg) => eg.title === selected)!.action();
 </script>
 
 <div class="grid grid-cols-2 md:grid-cols-3 gap-4 rounded-xl mb-5">
 	{#each examples as example (example.title)}
 		<label
-			class="cursor-pointer p-2 bg-gray-100 hover:border-blue-500 rounded-xl transition-colors border-2 border-transparent"
 			for={example.title}
+			class="cursor-pointer p-2 bg-gray-100 hover:border-blue-500 rounded-xl transition-colors border-2 border-transparent"
 			class:checked={example.title === selected}
-			on:mouseup={() => {
-				example.action();
-			}}
 		>
 			<input
 				type="radio"
