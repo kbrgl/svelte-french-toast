@@ -2,9 +2,7 @@
 	import Copy from './Copy.svelte';
 	import examples, { type Example } from './examples';
 
-	let selected: Example['title'] = 'Success';
-
-	$: examples.find((eg) => eg.title === selected)!.action();
+	let selected: Example['title'] | null = 'Success';
 </script>
 
 <div class="grid grid-cols-2 md:grid-cols-3 gap-4 rounded-xl mb-5">
@@ -19,6 +17,9 @@
 				id={example.title}
 				name="examples"
 				value={example.title}
+				on:change={() => {
+					example.action();
+				}}
 				bind:group={selected}
 			/>
 			<span class="mr-1">{example.emoji}</span>
