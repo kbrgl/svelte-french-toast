@@ -8,7 +8,7 @@
 	export let toast: Toast;
 	export let position: ToastPosition | undefined = undefined;
 	export let style = '';
-	export let Component: typeof SvelteComponent | undefined = undefined;
+	export let Component: typeof SvelteComponent<any> | undefined = undefined;
 
 	let factor: number;
 	let animation: string;

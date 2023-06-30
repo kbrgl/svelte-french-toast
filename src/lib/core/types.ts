@@ -20,7 +20,8 @@ export type ToastPosition =
 	| 'bottom-start'
 	| 'bottom-end';
 
-export type Renderable = typeof SvelteComponent | string | null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Renderable = typeof SvelteComponent<any> | string | null;
 
 export interface IconTheme {
 	primary: string;
