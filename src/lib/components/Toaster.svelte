@@ -30,6 +30,7 @@
 	style={containerStyle}
 	on:mouseenter={handlers.startPause}
 	on:mouseleave={handlers.endPause}
+	role="alert"
 >
 	{#each _toasts as toast (toast.id)}
 		<ToastWrapper {toast} setHeight={(height) => handlers.updateHeight(toast.id, height)} />
