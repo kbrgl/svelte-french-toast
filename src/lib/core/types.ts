@@ -51,6 +51,8 @@ export interface Toast<T extends Record<string, any> = Record<string, any>> {
 	pauseDuration: number;
 	position?: ToastPosition;
 
+	// We use `Omit` here in the case that the Component has `export let toast: Toast`.
+	// We are already passing the toast to the component, and it should not be included in props.
 	props?: Omit<T, 'toast'>;
 
 	ariaProps: {
