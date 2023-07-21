@@ -20,7 +20,10 @@ export type ToastPosition =
 	| 'bottom-start'
 	| 'bottom-end';
 
-export type Renderable = typeof SvelteComponent | string | null;
+export type Renderable<T extends Record<string, any> = Record<string, any>> =
+	| typeof SvelteComponent<T>
+	| string
+	| null;
 
 export interface IconTheme {
 	primary: string;
@@ -39,16 +42,16 @@ export const resolveValue = <TValue, TArg>(
 	arg: TArg
 ): TValue => (isFunction(valOrFunction) ? valOrFunction(arg) : valOrFunction);
 
-export interface Toast {
+export interface Toast<T extends Record<string, any> = Record<string, any>> {
 	type: ToastType;
 	id: string;
-	message: Renderable;
+	message: Renderable<T>;
 	icon?: Renderable;
 	duration?: number;
 	pauseDuration: number;
 	position?: ToastPosition;
 
-	props?: Record<string, any>;
+	props?: Omit<T, 'toast'>;
 
 	ariaProps: {
 		role: 'status' | 'alert';
@@ -64,11 +67,13 @@ export interface Toast {
 	height?: number;
 }
 
-export type DOMToast = Toast & { offset: number };
+export type DOMToast<T extends Record<string, any> = Record<string, any>> = Toast<T> & {
+	offset: number;
+};
 
-export type ToastOptions = Partial<
+export type ToastOptions<T extends Record<string, any> = Record<string, any>> = Partial<
 	Pick<
-		Toast,
+		Toast<T>,
 		| 'id'
 		| 'icon'
 		| 'duration'

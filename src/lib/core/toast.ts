@@ -10,11 +10,18 @@ import {
 } from './types';
 import { genId } from './utils';
 
-type Message = Renderable;
+type Message<T extends Record<string, any> = Record<string, any>> = Renderable<T>;
 
-type ToastHandler = (message: Message, options?: ToastOptions) => string;
+type ToastHandler = <T extends Record<string, any> = Record<string, any>>(
+	message: Message<T>,
+	options?: ToastOptions<T>
+) => string;
 
-const createToast = (message: Message, type: ToastType = 'blank', opts?: ToastOptions): Toast => ({
+const createToast = <T extends Record<string, any> = Record<string, any>>(
+	message: Message<T>,
+	type: ToastType = 'blank',
+	opts?: ToastOptions<T>
+): Toast<T> => ({
 	createdAt: Date.now(),
 	visible: true,
 	type,
@@ -24,7 +31,11 @@ const createToast = (message: Message, type: ToastType = 'blank', opts?: ToastOp
 	},
 	message,
 	pauseDuration: 0,
-	...opts,
+	icon: opts?.icon,
+	duration: opts?.duration,
+	iconTheme: opts?.iconTheme,
+	position: opts?.position,
+	props: opts?.props,
 	id: opts?.id || genId()
 });
 
@@ -36,7 +47,10 @@ const createHandler =
 		return toast.id;
 	};
 
-const toast = (message: Message, opts?: ToastOptions) => createHandler('blank')(message, opts);
+const toast = <T extends Record<string, any> = Record<string, any>>(
+	message: Message<T>,
+	opts?: ToastOptions<T>
+) => createHandler('blank')(message, opts);
 
 toast.error = createHandler('error');
 toast.success = createHandler('success');
