@@ -48,6 +48,8 @@ export interface Toast {
 	pauseDuration: number;
 	position?: ToastPosition;
 
+	props?: any;
+	
 	ariaProps: {
 		role: 'status' | 'alert';
 		'aria-live': 'assertive' | 'off' | 'polite';
@@ -67,7 +69,7 @@ export type DOMToast = Toast & { offset: number };
 export type ToastOptions = Partial<
 	Pick<
 		Toast,
-		'id' | 'icon' | 'duration' | 'ariaProps' | 'className' | 'style' | 'position' | 'iconTheme'
+		'id' | 'icon' | 'duration' | 'ariaProps' | 'className' | 'style' | 'position' | 'iconTheme' | 'props'
 	>
 >;
 
