@@ -20,7 +20,7 @@
 		{ name: 'NPM', cmd: 'npm install svelte-french-toast' },
 		{ name: 'PNPM', cmd: 'pnpm install svelte-french-toast' },
 		{ name: 'Yarn', cmd: 'yarn add svelte-french-toast' },
-		{ name: 'Bun', cmd: 'bun add svelte-french-toast' },
+		{ name: 'Bun', cmd: 'bun add svelte-french-toast' }
 	];
 	let installer = installers[0].name;
 </script>
