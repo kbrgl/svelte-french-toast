@@ -8,6 +8,7 @@
 	export let toast: Toast;
 	export let position: ToastPosition | undefined = undefined;
 	export let style = '';
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	export let Component: typeof SvelteComponent<any> | undefined = undefined;
 
 	let factor: number;
