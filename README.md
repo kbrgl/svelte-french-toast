@@ -35,11 +35,11 @@ Mount a `<Toaster />` at the top level of your app and use the `toast` API to di
 
 ```js
 <script>
-import toast, {Toaster} from 'svelte-french-toast'
+	import toast, {Toaster} from 'svelte-french-toast'
 
-function handleClick() {
-    toast.success('Hello, world!')
-}
+	function handleClick() {
+		toast.success('Hello, world!')
+	}
 </script>
 
 <Toaster />
