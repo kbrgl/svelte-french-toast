@@ -38,7 +38,7 @@
 	</div>
 {/each}
 
-<style>
+<style lang="postcss">
 	input[type='radio'] {
 		@apply appearance-none;
 	}
