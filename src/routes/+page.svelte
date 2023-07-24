@@ -159,7 +159,7 @@
 	</p>
 </div>
 
-<style>
+<style lang="postcss">
 	:not(pre) > code,
 	pre {
 		@apply p-5 block;

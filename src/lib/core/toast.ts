@@ -68,6 +68,7 @@ toast.promise = <T>(
 	msgs: {
 		loading: Renderable;
 		success: ValueOrFunction<Renderable, T>;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		error: ValueOrFunction<Renderable, any>;
 	},
 	opts?: DefaultToastOptions
