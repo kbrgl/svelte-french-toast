@@ -20,8 +20,10 @@ export type ToastPosition =
 	| 'bottom-start'
 	| 'bottom-end';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type Renderable = typeof SvelteComponent<any> | string | null;
+export type Renderable<T extends Record<string, any> = Record<string, any>> =
+	| typeof SvelteComponent<T>
+	| string
+	| null;
 
 export interface IconTheme {
 	primary: string;
@@ -40,14 +42,18 @@ export const resolveValue = <TValue, TArg>(
 	arg: TArg
 ): TValue => (isFunction(valOrFunction) ? valOrFunction(arg) : valOrFunction);
 
-export interface Toast {
+export interface Toast<T extends Record<string, any> = Record<string, any>> {
 	type: ToastType;
 	id: string;
-	message: Renderable;
+	message: Renderable<T>;
 	icon?: Renderable;
 	duration?: number;
 	pauseDuration: number;
 	position?: ToastPosition;
+
+	// We use `Omit` here in the case that the Component has `export let toast: Toast`.
+	// We are already passing the toast to the component, and it should not be included in props.
+	props?: Omit<T, 'toast'>;
 
 	ariaProps: {
 		role: 'status' | 'alert';
@@ -63,12 +69,22 @@ export interface Toast {
 	height?: number;
 }
 
-export type DOMToast = Toast & { offset: number };
+export type DOMToast<T extends Record<string, any> = Record<string, any>> = Toast<T> & {
+	offset: number;
+};
 
-export type ToastOptions = Partial<
+export type ToastOptions<T extends Record<string, any> = Record<string, any>> = Partial<
 	Pick<
-		Toast,
-		'id' | 'icon' | 'duration' | 'ariaProps' | 'className' | 'style' | 'position' | 'iconTheme'
+		Toast<T>,
+		| 'id'
+		| 'icon'
+		| 'duration'
+		| 'ariaProps'
+		| 'className'
+		| 'style'
+		| 'position'
+		| 'iconTheme'
+		| 'props'
 	>
 >;
 
