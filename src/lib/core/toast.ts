@@ -73,26 +73,29 @@ toast.promise = <T>(
 	},
 	opts?: DefaultToastOptions
 ) => {
-	const id = toast.loading(msgs.loading, { ...opts, ...opts?.loading });
-
-	promise
-		.then((p) => {
-			toast.success(resolveValue(msgs.success, p), {
-				id,
-				...opts,
-				...opts?.success
-			});
-			return p;
-		})
-		.catch((e) => {
-			toast.error(resolveValue(msgs.error, e), {
-				id,
-				...opts,
-				...opts?.error
-			});
-		});
-
-	return promise;
+	//default to Infinity, so that the loading toast will stay until we have resolved the promise
+    const id = toast.loading(msgs.loading, { duration: Infinity, 
+        ...opts, 
+        ...opts?.loading 
+    });
+    promise
+        .then((p) => {
+		// remove the toast explicity, instead of reusing the id with success/error toast. With this we don't need to override the opts of toast.loading for toast.success/toast.error
+        toast.remove(id)
+        toast.success(msgs.success ?? p, {
+            ...opts,
+            ...opts?.success
+        });
+        return p;
+    })
+        .catch((e) => {
+        toast.remove(id)
+        toast.error(msgs.error ?? e, {
+            ...opts,
+            ...opts?.error
+        });
+    });
+    return promise;
 };
 
 export default toast;
