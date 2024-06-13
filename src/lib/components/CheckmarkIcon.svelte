@@ -6,7 +6,7 @@
 	export let secondary: IconTheme['secondary'] = '#fff';
 </script>
 
-<div style:--primary={primary} style:--secondary={secondary} />
+<div style:--primary={primary} style:--secondary={secondary}></div>
 
 <style>
 	div {
