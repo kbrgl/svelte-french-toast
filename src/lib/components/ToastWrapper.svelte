@@ -9,11 +9,14 @@
 	export let toast: DOMToast;
 	export let setHeight: (height: number) => void;
 
-	let wrapperEl: HTMLElement;
-	onMount(() => {
-		setHeight(wrapperEl.getBoundingClientRect().height);
-	});
+	let clientHeight: number;
 
+	function onHeightChange(clientHeight: number) {
+		if (clientHeight === undefined) return;
+		setHeight(clientHeight);
+	}
+
+	$: onHeightChange(clientHeight);
 	$: top = toast.position?.includes('top') ? 0 : null;
 	$: bottom = toast.position?.includes('bottom') ? 0 : null;
 	$: factor = toast.position?.includes('top') ? 1 : -1;
@@ -24,7 +27,7 @@
 </script>
 
 <div
-	bind:this={wrapperEl}
+	bind:clientHeight
 	class="wrapper"
 	class:active={toast.visible}
 	class:transition={!prefersReducedMotion()}
