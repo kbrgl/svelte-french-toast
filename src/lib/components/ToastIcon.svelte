@@ -4,14 +4,21 @@
 	import LoaderIcon from './LoaderIcon.svelte';
 	import type { Toast } from '../core/types';
 
-	export let toast: Toast;
-	$: ({ type, icon, iconTheme } = toast);
+	interface Props {
+		toast: Toast;
+	}
+
+	let { toast }: Props = $props();
+
+	let type = $derived(toast.type);
+	let Icon = $derived(toast.icon);
+	let iconTheme = $derived(toast.iconTheme);
 </script>
 
-{#if typeof icon === 'string'}
-	<div class="animated">{icon}</div>
-{:else if typeof icon !== 'undefined'}
-	<svelte:component this={icon} />
+{#if typeof Icon === 'string'}
+	<div class="animated">{Icon}</div>
+{:else if typeof Icon !== 'undefined'}
+	<Icon />
 {:else if type !== 'blank'}
 	<div class="indicator">
 		<LoaderIcon {...iconTheme} />
