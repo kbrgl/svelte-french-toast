@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Toast } from '../core/types';
+	import type { Renderable, Toast } from '../core/types';
 
 	interface Props {
 		toast: Toast;
@@ -7,7 +7,7 @@
 
 	let { toast }: Props = $props();
 
-	let Message = $derived(toast.message);
+	let Message: Renderable<Record<string, any>> = $state(toast.message);
 </script>
 
 <div class="message" {...toast.ariaProps}>

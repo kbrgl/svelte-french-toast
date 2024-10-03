@@ -8,7 +8,7 @@
 
 	interface Props {
 		toast: DOMToast;
-		setHeight: (height: number) => void;
+		setHeight: (height: number | undefined) => void;
 	}
 
 	let { toast, setHeight }: Props = $props();
@@ -16,7 +16,7 @@
 	let wrapperEl = $state<HTMLElement>();
 
 	onMount(() => {
-		setHeight(wrapperEl?.getBoundingClientRect()?.height);
+		setHeight?.(wrapperEl?.getBoundingClientRect()?.height);
 	});
 
 	let top = $derived(toast.position?.includes('top') ? 0 : null);

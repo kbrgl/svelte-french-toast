@@ -3,8 +3,8 @@
 	import type { IconTheme } from '../core/types';
 
 	interface Props {
-		primary: IconTheme['primary'];
-		secondary: IconTheme['secondary'];
+		primary?: IconTheme['primary'];
+		secondary?: IconTheme['secondary'];
 	}
 
 	let { primary = '#ff4b4b', secondary = '#fff' }: Props = $props();

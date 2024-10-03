@@ -21,8 +21,10 @@
 
 	let top = $derived((toast.position || position || 'top-center').includes('top'));
 	let factor: number = $derived(top ? 1 : -1);
-	let animationSets = $derived(prefersReducedMotion() ? ['fadeIn', 'fadeOut'] : ['enter', 'exit']);
-	let animation: string = $derived(toast.visible ? animationSets?.enter : animationSets?.exit);
+	const [enter, exit] = $derived(
+		prefersReducedMotion() ? ['fadeIn', 'fadeOut'] : ['enter', 'exit']
+	);
+	let animation: string = $derived(toast.visible ? enter : exit);
 </script>
 
 {#snippet children(data: { toast: Toast })}
