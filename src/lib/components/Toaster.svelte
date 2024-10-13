@@ -46,7 +46,6 @@
 		top: var(--default-offset);
 		left: var(--default-offset);
 		right: var(--default-offset);
-		bottom: var(--default-offset);
 		pointer-events: none;
 	}
 </style>
