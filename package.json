@@ -10,7 +10,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/anatoliy-t7/svelte-5-french-toast.git"
+		"url": "https://github.com/anatoliy-t7/svelte-5-french-toast/tree/5"
 	},
 	"license": "MIT",
 	"author": "Kabir Goel",
