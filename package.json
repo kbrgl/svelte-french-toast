@@ -1,5 +1,5 @@
 {
-	"name": "svelte-french-toast",
+	"name": "svelte-5-french-toast",
 	"version": "2.0.0",
 	"description": "Buttery smooth Svelte toasts. Lightweight, customizable, and beautiful by default. Svelte 5 Only",
 	"keywords": [
@@ -10,7 +10,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/kbrgl/svelte-french-toast.git"
+		"url": "git+https://github.com/kbrgl/svelte-french-toast.git"
 	},
 	"license": "MIT",
 	"author": "Kabir Goel",
