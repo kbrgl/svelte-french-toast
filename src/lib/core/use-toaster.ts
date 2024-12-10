@@ -36,7 +36,7 @@ const handlers = {
 		_endPause(Date.now());
 	},
 	updateHeight: (toastId: string, height: number) => {
-		update({ id: toastId, height });
+		update({ id: toastId, height }, false);
 	},
 	calculateOffset
 };
