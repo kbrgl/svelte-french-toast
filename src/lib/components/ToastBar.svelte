@@ -2,25 +2,35 @@
 	import ToastIcon from './ToastIcon.svelte';
 	import type { Toast, ToastPosition } from '../core/types';
 	import { prefersReducedMotion } from '../core/utils';
-	import type { SvelteComponent } from 'svelte';
+	import type { Snippet, SvelteComponent } from 'svelte';
 	import ToastMessage from './ToastMessage.svelte';
 
-	export let toast: Toast;
-	export let position: ToastPosition | undefined = undefined;
-	export let style = '';
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	export let Component: typeof SvelteComponent<any> | undefined = undefined;
-
-	let factor: number;
-	let animation: string;
-	$: {
-		const top = (toast.position || position || 'top-center').includes('top');
-		factor = top ? 1 : -1;
-
-		const [enter, exit] = prefersReducedMotion() ? ['fadeIn', 'fadeOut'] : ['enter', 'exit'];
-		animation = toast.visible ? enter : exit;
+	interface Props {
+		toast: Toast;
+		position: ToastPosition | undefined;
+		style?: string;
+		Component?: typeof SvelteComponent | undefined;
 	}
+
+	let {
+		toast,
+		position: position = undefined,
+		style = '',
+		Component: Component = undefined
+	}: Props = $props();
+
+	let top = $derived((toast.position || position || 'top-center').includes('top'));
+	let factor: number = $derived(top ? 1 : -1);
+	const [enter, exit] = $derived(
+		prefersReducedMotion() ? ['fadeIn', 'fadeOut'] : ['enter', 'exit']
+	);
+	let animation: string = $derived(toast.visible ? enter : exit);
 </script>
+
+{#snippet children(data: { toast: Toast })}
+	<ToastIcon toast={data.toast} />
+	<ToastMessage toast={data.toast} />
+{/snippet}
 
 <div
 	class="base {toast.height ? animation : 'transparent'} {toast.className || ''}"
@@ -28,15 +38,12 @@
 	style:--factor={factor}
 >
 	{#if Component}
-		<svelte:component this={Component}>
+		<Component>
 			<ToastIcon {toast} slot="icon" />
 			<ToastMessage {toast} slot="message" />
-		</svelte:component>
+		</Component>
 	{:else}
-		<slot {ToastIcon} {ToastMessage} {toast}>
-			<ToastIcon {toast} />
-			<ToastMessage {toast} />
-		</slot>
+		{@render children({ toast })}
 	{/if}
 </div>
 
@@ -88,7 +95,9 @@
 		color: #363636;
 		line-height: 1.3;
 		will-change: transform;
-		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);
+		box-shadow:
+			0 3px 10px rgba(0, 0, 0, 0.1),
+			0 3px 3px rgba(0, 0, 0, 0.05);
 		max-width: 350px;
 		pointer-events: auto;
 		padding: 8px 10px;

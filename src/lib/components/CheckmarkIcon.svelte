@@ -2,8 +2,12 @@
 <script lang="ts">
 	import type { IconTheme } from '../core/types';
 
-	export let primary: IconTheme['primary'] = '#61d345';
-	export let secondary: IconTheme['secondary'] = '#fff';
+	interface Props {
+		primary?: IconTheme['primary'];
+		secondary?: IconTheme['secondary'];
+	}
+
+	let { primary = '#61d345', secondary = '#fff' }: Props = $props();
 </script>
 
 <div style:--primary={primary} style:--secondary={secondary}></div>

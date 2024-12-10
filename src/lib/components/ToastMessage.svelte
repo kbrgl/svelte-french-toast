@@ -1,14 +1,20 @@
 <script lang="ts">
-	import type { Toast } from '../core/types';
+	import type { Renderable, Toast } from '../core/types';
 
-	export let toast: Toast;
+	interface Props {
+		toast: Toast;
+	}
+
+	let { toast }: Props = $props();
+
+	let Message: Renderable<Record<string, any>> = $state(toast.message);
 </script>
 
 <div class="message" {...toast.ariaProps}>
 	{#if typeof toast.message === 'string'}
 		{toast.message}
 	{:else}
-		<svelte:component this={toast.message} {toast} {...toast.props} />
+		<Message {toast} {...toast.props} />
 	{/if}
 </div>
 
