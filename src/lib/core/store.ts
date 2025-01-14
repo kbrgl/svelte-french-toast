@@ -34,8 +34,8 @@ const clearFromRemoveQueue = (toastId: string) => {
 	}
 };
 
-export function update(toast: Partial<Toast>) {
-	if (toast.id) {
+export function update(toast: Partial<Toast>, clearTimeout = true) {
+	if (clearTimeout && toast.id) {
 		clearFromRemoveQueue(toast.id);
 	}
 	toasts.update(($toasts) => $toasts.map((t) => (t.id === toast.id ? { ...t, ...toast } : t)));
