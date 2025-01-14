@@ -44,7 +44,7 @@
 	role="alert"
 >
 	{#each _toasts as toast (toast.id)}
-		<ToastWrapper {toast} setHeight={(height) => handlers.updateHeight(toast.id, height)} />
+		<ToastWrapper {toast} setHeight={(height) => handlers.updateHeight(toast.id, height ?? 0)} />
 	{/each}
 </div>
 
