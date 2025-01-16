@@ -34,7 +34,7 @@
 {/snippet}
 
 <div
-	bind:clientHeight
+	bind:this={wrapperEl}
 	class="wrapper"
 	class:active={toast.visible}
 	class:transition={!prefersReducedMotion()}

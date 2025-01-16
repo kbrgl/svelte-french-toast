@@ -8,16 +8,10 @@
 	interface Props {
 		toast: Toast;
 		position: ToastPosition | undefined;
-		style?: string;
 		Component?: typeof SvelteComponent | undefined;
 	}
 
-	let {
-		toast,
-		position: position = undefined,
-		style = '',
-		Component: Component = undefined
-	}: Props = $props();
+	let { toast, position: position = undefined, Component: Component = undefined }: Props = $props();
 
 	let top = $derived((toast.position || position || 'top-center').includes('top'));
 	let factor: number = $derived(top ? 1 : -1);
@@ -34,7 +28,7 @@
 
 <div
 	class="base {toast.height ? animation : 'transparent'} {toast.className || ''}"
-	style="{style}; {toast.style}"
+	style={toast.style}
 	style:--factor={factor}
 >
 	{#if Component}
