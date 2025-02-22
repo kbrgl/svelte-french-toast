@@ -9,7 +9,7 @@
 	interface Props {
 		toast: DOMToast;
 		setHeight: (height: number) => void;
-		children?: Snippet<[any]>;
+		children?: Snippet<[{ toast: DOMToast }]>;
 	}
 
 	let { toast, setHeight, children }: Props = $props();
