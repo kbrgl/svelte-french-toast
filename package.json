@@ -47,16 +47,15 @@
 		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
+		"@eslint/js": "^9.21.0",
 		"@playwright/test": "^1.50.1",
 		"@sveltejs/adapter-auto": "^4.0.0",
 		"@sveltejs/kit": "^2.17.2",
 		"@sveltejs/package": "^2.3.10",
 		"@sveltejs/vite-plugin-svelte": "^5.0.3",
 		"@types/prismjs": "^1.26.5",
-		"@typescript-eslint/eslint-plugin": "^5.62.0",
-		"@typescript-eslint/parser": "^5.62.0",
 		"autoprefixer": "^10.4.20",
-		"eslint": "^8.57.1",
+		"eslint": "^9.21.0",
 		"eslint-config-prettier": "^8.10.0",
 		"eslint-plugin-svelte": "^2.46.1",
 		"postcss": "^8.5.3",
@@ -70,6 +69,7 @@
 		"tailwindcss": "^3.4.17",
 		"tslib": "^2.8.1",
 		"typescript": "~5.0.4",
+		"typescript-eslint": "^8.24.1",
 		"vite": "^6.1.1",
 		"vitest": "^3.0.6"
 	},
