@@ -1,5 +1,10 @@
-<script>
+<script lang="ts">
 	import '../app.css';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <svelte:head>
@@ -30,4 +35,4 @@
 	/>
 	<meta property="twitter:image" content="https://svelte-french-toast.com/og-image.png" />
 </svelte:head>
-<slot />
+{@render children?.()}

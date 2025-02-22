@@ -10,14 +10,14 @@ import {
 } from './types';
 import { genId } from './utils';
 
-type Message<T extends Record<string, any> = Record<string, any>> = Renderable<T>;
+type Message<T extends Record<string, unknown> = Record<string, unknown>> = Renderable<T>;
 
-type ToastHandler = <T extends Record<string, any> = Record<string, any>>(
+type ToastHandler = <T extends Record<string, unknown> = Record<string, unknown>>(
 	message: Message<T>,
 	options?: ToastOptions<T>
 ) => string;
 
-const createToast = <T extends Record<string, any> = Record<string, any>>(
+const createToast = <T extends Record<string, unknown> = Record<string, unknown>>(
 	message: Message<T>,
 	type: ToastType = 'blank',
 	opts?: ToastOptions<T>
@@ -47,7 +47,7 @@ const createHandler =
 		return toast.id;
 	};
 
-const toast = <T extends Record<string, any> = Record<string, any>>(
+const toast = <T extends Record<string, unknown> = Record<string, unknown>>(
 	message: Message<T>,
 	opts?: ToastOptions<T>
 ) => createHandler('blank')(message, opts);

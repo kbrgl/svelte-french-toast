@@ -20,7 +20,7 @@ export type ToastPosition =
 	| 'bottom-start'
 	| 'bottom-end';
 
-export type Renderable<T extends Record<string, any> = Record<string, any>> =
+export type Renderable<T extends Record<string, unknown> = Record<string, unknown>> =
 	| typeof SvelteComponent<T>
 	| string
 	| null;
@@ -42,7 +42,7 @@ export const resolveValue = <TValue, TArg>(
 	arg: TArg
 ): TValue => (isFunction(valOrFunction) ? valOrFunction(arg) : valOrFunction);
 
-export interface Toast<T extends Record<string, any> = Record<string, any>> {
+export interface Toast<T extends Record<string, unknown> = Record<string, unknown>> {
 	type: ToastType;
 	id: string;
 	message: Renderable<T>;
@@ -69,11 +69,11 @@ export interface Toast<T extends Record<string, any> = Record<string, any>> {
 	height?: number;
 }
 
-export type DOMToast<T extends Record<string, any> = Record<string, any>> = Toast<T> & {
+export type DOMToast<T extends Record<string, unknown> = Record<string, unknown>> = Toast<T> & {
 	offset: number;
 };
 
-export type ToastOptions<T extends Record<string, any> = Record<string, any>> = Partial<
+export type ToastOptions<T extends Record<string, unknown> = Record<string, unknown>> = Partial<
 	Pick<
 		Toast<T>,
 		| 'id'

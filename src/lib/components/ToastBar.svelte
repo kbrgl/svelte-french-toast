@@ -2,24 +2,35 @@
 	import ToastIcon from './ToastIcon.svelte';
 	import type { Toast, ToastPosition } from '../core/types';
 	import { prefersReducedMotion } from '../core/utils';
-	import type { SvelteComponent } from 'svelte';
+	import type { Snippet, Component as ComponentType } from 'svelte';
 	import ToastMessage from './ToastMessage.svelte';
 
-	export let toast: Toast;
-	export let position: ToastPosition | undefined = undefined;
-	export let style = '';
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	export let Component: typeof SvelteComponent<any> | undefined = undefined;
-
-	let factor: number;
-	let animation: string;
-	$: {
-		const top = (toast.position || position || 'top-center').includes('top');
-		factor = top ? 1 : -1;
-
-		const [enter, exit] = prefersReducedMotion() ? ['fadeIn', 'fadeOut'] : ['enter', 'exit'];
-		animation = toast.visible ? enter : exit;
+	interface Props {
+		toast: Toast;
+		position?: ToastPosition | undefined;
+		style?: string;
+		Component?: ComponentType<Record<string, unknown>> | undefined;
+		children?: Snippet<
+			[{ ToastIcon: typeof ToastIcon; ToastMessage: typeof ToastMessage; toast: Toast }]
+		>;
 	}
+
+	let {
+		toast,
+		position = undefined,
+		style = '',
+		Component = undefined,
+		children
+	}: Props = $props();
+
+	let factor: number | undefined = $derived.by(() => {
+		const top = (toast.position || position || 'top-center').includes('top');
+		return top ? 1 : -1;
+	});
+	let animation: string | undefined = $derived.by(() => {
+		const [enter, exit] = prefersReducedMotion() ? ['fadeIn', 'fadeOut'] : ['enter', 'exit'];
+		return toast.visible ? enter : exit;
+	});
 </script>
 
 <div
@@ -28,15 +39,17 @@
 	style:--factor={factor}
 >
 	{#if Component}
-		<svelte:component this={Component}>
-			<ToastIcon {toast} slot="icon" />
-			<ToastMessage {toast} slot="message" />
-		</svelte:component>
-	{:else}
-		<slot {ToastIcon} {ToastMessage} {toast}>
-			<ToastIcon {toast} />
-			<ToastMessage {toast} />
-		</slot>
+		<Component>
+			{#snippet icon()}
+				<ToastIcon {toast} />
+			{/snippet}
+			{#snippet message()}
+				<ToastMessage {toast} />
+			{/snippet}
+		</Component>
+	{:else if children}{@render children({ ToastIcon, ToastMessage, toast })}{:else}
+		<ToastIcon {toast} />
+		<ToastMessage {toast} />
 	{/if}
 </div>
 
@@ -88,7 +101,9 @@
 		color: #363636;
 		line-height: 1.3;
 		will-change: transform;
-		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);
+		box-shadow:
+			0 3px 10px rgba(0, 0, 0, 0.1),
+			0 3px 3px rgba(0, 0, 0, 0.05);
 		max-width: 350px;
 		pointer-events: auto;
 		padding: 8px 10px;

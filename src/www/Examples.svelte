@@ -2,7 +2,7 @@
 	import Copy from './Copy.svelte';
 	import examples, { type Example } from './examples';
 
-	let selected: Example['title'] | null = 'Success';
+	let selected: Example['title'] | null = $state('Success');
 </script>
 
 <div class="grid grid-cols-2 md:grid-cols-3 gap-4 rounded-xl mb-5">
@@ -17,7 +17,7 @@
 				id={example.title}
 				name="examples"
 				value={example.title}
-				on:change={() => {
+				onchange={() => {
 					example.action();
 				}}
 				bind:group={selected}

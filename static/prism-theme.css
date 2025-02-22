@@ -8,10 +8,10 @@ Generated with Base16 Builder (https://github.com/base16-builder/base16-builder)
 
 code[class*='language-'],
 pre[class*='language-'] {
-	font-family: ui-monospace, SFMono-Regular, Consolas, Menlo, Monaco, 'Andale Mono WT',
-		'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono',
-		'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', 'Courier New', Courier,
-		monospace;
+	font-family:
+		ui-monospace, SFMono-Regular, Consolas, Menlo, Monaco, 'Andale Mono WT', 'Andale Mono',
+		'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',
+		'Liberation Mono', 'Nimbus Mono L', 'Courier New', Courier, monospace;
 	font-size: 16px;
 	line-height: 1.375;
 	direction: ltr;

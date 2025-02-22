@@ -22,7 +22,7 @@
 		{ name: 'Yarn', cmd: 'yarn add svelte-french-toast' },
 		{ name: 'Bun', cmd: 'bun add svelte-french-toast' }
 	];
-	let installer = installers[0].name;
+	let installer = $state(installers[0].name);
 </script>
 
 <Toaster />
@@ -60,7 +60,7 @@
 		</p>
 		<div class="flex items-center mt-10 space-x-4">
 			<button
-				on:click={launchToast}
+				onclick={launchToast}
 				class="flex items-center space-x-2 text-lg py-2 font-bold px-5 rounded-xl bg-amber-300 border-2 border-amber-400 shadow"
 			>
 				<svg
