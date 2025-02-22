@@ -16,14 +16,9 @@
 
 	let clientHeight: number | undefined = $state();
 
-	function onHeightChange(clientHeight: number) {
-		if (clientHeight === undefined) return;
-		setHeight(clientHeight);
-	}
-
 	onMount(() => {
 		if (clientHeight === undefined) return;
-		onHeightChange(clientHeight);
+		setHeight(clientHeight);
 	});
 
 	let top = $derived(toast.position?.includes('top') ? 0 : null);
