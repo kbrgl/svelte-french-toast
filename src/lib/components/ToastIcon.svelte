@@ -15,8 +15,8 @@
 {#if typeof icon === 'string'}
 	<div class="animated">{icon}</div>
 {:else if typeof icon !== 'undefined'}
-	{@const SvelteComponent = icon}
-	<SvelteComponent />
+	{@const IconComponent = icon}
+	<IconComponent />
 {:else if type !== 'blank'}
 	<div class="indicator">
 		<LoaderIcon {...iconTheme} />
