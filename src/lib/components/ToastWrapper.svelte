@@ -25,6 +25,7 @@
 		if (clientHeight === undefined) return;
 		onHeightChange(clientHeight);
 	});
+
 	let top = $derived(toast.position?.includes('top') ? 0 : null);
 	let bottom = $derived(toast.position?.includes('bottom') ? 0 : null);
 	let factor = $derived(toast.position?.includes('top') ? 1 : -1);
