@@ -2,7 +2,7 @@
 	import ToastIcon from './ToastIcon.svelte';
 	import type { Toast, ToastPosition } from '../core/types';
 	import { prefersReducedMotion } from '../core/utils';
-	import type { SvelteComponent } from 'svelte';
+	import type { SvelteComponent, Snippet } from 'svelte';
 	import ToastMessage from './ToastMessage.svelte';
 
 	interface Props {
@@ -11,7 +11,7 @@
 		style?: string;
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		Component?: typeof SvelteComponent<any> | undefined;
-		children?: import('svelte').Snippet<[any]>;
+		children?: Snippet<[any]>;
 	}
 
 	let {
