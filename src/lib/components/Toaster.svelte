@@ -23,17 +23,17 @@
 
 	const { toasts, handlers } = useToaster(toastOptions);
 
-	let _toasts: DOMToast[] = $derived($toasts.map((toast) => ({
-		...toast,
-		position: toast.position || position,
-		offset: handlers.calculateOffset(toast, $toasts, {
-			reverseOrder,
-			gutter,
-			defaultPosition: position
-		})
-	})));
-
-	
+	let _toasts: DOMToast[] = $derived(
+		$toasts.map((toast) => ({
+			...toast,
+			position: toast.position || position,
+			offset: handlers.calculateOffset(toast, $toasts, {
+				reverseOrder,
+				gutter,
+				defaultPosition: position
+			})
+		}))
+	);
 </script>
 
 <div

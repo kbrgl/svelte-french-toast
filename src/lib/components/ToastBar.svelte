@@ -7,7 +7,6 @@
 	import type { SvelteComponent } from 'svelte';
 	import ToastMessage from './ToastMessage.svelte';
 
-	
 	interface Props {
 		toast: Toast;
 		position?: ToastPosition | undefined;
@@ -44,17 +43,15 @@
 	{#if Component}
 		<Component>
 			{#snippet icon()}
-						<ToastIcon {toast}  />
-					{/snippet}
+				<ToastIcon {toast} />
+			{/snippet}
 			{#snippet message()}
-						<ToastMessage {toast}  />
-					{/snippet}
+				<ToastMessage {toast} />
+			{/snippet}
 		</Component>
-	{:else}
-		{#if children}{@render children({ ToastIcon, ToastMessage, toast, })}{:else}
-			<ToastIcon {toast} />
-			<ToastMessage {toast} />
-		{/if}
+	{:else if children}{@render children({ ToastIcon, ToastMessage, toast })}{:else}
+		<ToastIcon {toast} />
+		<ToastMessage {toast} />
 	{/if}
 </div>
 
@@ -106,7 +103,9 @@
 		color: #363636;
 		line-height: 1.3;
 		will-change: transform;
-		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);
+		box-shadow:
+			0 3px 10px rgba(0, 0, 0, 0.1),
+			0 3px 3px rgba(0, 0, 0, 0.05);
 		max-width: 350px;
 		pointer-events: auto;
 		padding: 8px 10px;

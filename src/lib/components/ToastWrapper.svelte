@@ -29,10 +29,11 @@
 	let top = $derived(toast.position?.includes('top') ? 0 : null);
 	let bottom = $derived(toast.position?.includes('bottom') ? 0 : null);
 	let factor = $derived(toast.position?.includes('top') ? 1 : -1);
-	let justifyContent =
-		$derived((toast.position?.includes('center') && 'center') ||
-		((toast.position?.includes('right') || toast.position?.includes('end')) && 'flex-end') ||
-		null);
+	let justifyContent = $derived(
+		(toast.position?.includes('center') && 'center') ||
+			((toast.position?.includes('right') || toast.position?.includes('end')) && 'flex-end') ||
+			null
+	);
 </script>
 
 <div
@@ -48,10 +49,8 @@
 >
 	{#if toast.type === 'custom'}
 		<ToastMessage {toast} />
-	{:else}
-		{#if children}{@render children({ toast, })}{:else}
-			<ToastBar {toast} position={toast.position} />
-		{/if}
+	{:else if children}{@render children({ toast })}{:else}
+		<ToastBar {toast} position={toast.position} />
 	{/if}
 </div>
 

@@ -28,5 +28,5 @@ export default tseslint.config(
 			es2017: true,
 			node: true
 		}
-	},
+	}
 );
