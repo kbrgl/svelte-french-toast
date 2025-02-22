@@ -3,18 +3,27 @@
 	import type { DOMToast, ToastOptions, ToastPosition } from '../core/types';
 	import ToastWrapper from './ToastWrapper.svelte';
 
-	export let reverseOrder = false;
-	export let position: ToastPosition = 'top-center';
-	export let toastOptions: ToastOptions | undefined = undefined;
-	export let gutter = 8;
-	export let containerStyle: string | undefined = undefined;
-	export let containerClassName: string | undefined = undefined;
+	interface Props {
+		reverseOrder?: boolean;
+		position?: ToastPosition;
+		toastOptions?: ToastOptions | undefined;
+		gutter?: number;
+		containerStyle?: string | undefined;
+		containerClassName?: string | undefined;
+	}
+
+	let {
+		reverseOrder = false,
+		position = 'top-center',
+		toastOptions = undefined,
+		gutter = 8,
+		containerStyle = undefined,
+		containerClassName = undefined
+	}: Props = $props();
 
 	const { toasts, handlers } = useToaster(toastOptions);
 
-	let _toasts: DOMToast[];
-
-	$: _toasts = $toasts.map((toast) => ({
+	let _toasts: DOMToast[] = $derived($toasts.map((toast) => ({
 		...toast,
 		position: toast.position || position,
 		offset: handlers.calculateOffset(toast, $toasts, {
@@ -22,14 +31,16 @@
 			gutter,
 			defaultPosition: position
 		})
-	}));
+	})));
+
+	
 </script>
 
 <div
 	class="toaster {containerClassName || ''}"
 	style={containerStyle}
-	on:mouseenter={handlers.startPause}
-	on:mouseleave={handlers.endPause}
+	onmouseenter={handlers.startPause}
+	onmouseleave={handlers.endPause}
 	role="alert"
 >
 	{#each _toasts as toast (toast.id)}

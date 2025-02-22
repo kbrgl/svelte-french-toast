@@ -1,25 +1,39 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import ToastIcon from './ToastIcon.svelte';
 	import type { Toast, ToastPosition } from '../core/types';
 	import { prefersReducedMotion } from '../core/utils';
 	import type { SvelteComponent } from 'svelte';
 	import ToastMessage from './ToastMessage.svelte';
 
-	export let toast: Toast;
-	export let position: ToastPosition | undefined = undefined;
-	export let style = '';
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	export let Component: typeof SvelteComponent<any> | undefined = undefined;
+	
+	interface Props {
+		toast: Toast;
+		position?: ToastPosition | undefined;
+		style?: string;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		Component?: typeof SvelteComponent<any> | undefined;
+		children?: import('svelte').Snippet<[any]>;
+	}
 
-	let factor: number;
-	let animation: string;
-	$: {
+	let {
+		toast,
+		position = undefined,
+		style = '',
+		Component = undefined,
+		children
+	}: Props = $props();
+
+	let factor: number = $state();
+	let animation: string = $state();
+	run(() => {
 		const top = (toast.position || position || 'top-center').includes('top');
 		factor = top ? 1 : -1;
 
 		const [enter, exit] = prefersReducedMotion() ? ['fadeIn', 'fadeOut'] : ['enter', 'exit'];
 		animation = toast.visible ? enter : exit;
-	}
+	});
 </script>
 
 <div
@@ -28,15 +42,19 @@
 	style:--factor={factor}
 >
 	{#if Component}
-		<svelte:component this={Component}>
-			<ToastIcon {toast} slot="icon" />
-			<ToastMessage {toast} slot="message" />
-		</svelte:component>
+		<Component>
+			{#snippet icon()}
+						<ToastIcon {toast}  />
+					{/snippet}
+			{#snippet message()}
+						<ToastMessage {toast}  />
+					{/snippet}
+		</Component>
 	{:else}
-		<slot {ToastIcon} {ToastMessage} {toast}>
+		{#if children}{@render children({ ToastIcon, ToastMessage, toast, })}{:else}
 			<ToastIcon {toast} />
 			<ToastMessage {toast} />
-		</slot>
+		{/if}
 	{/if}
 </div>
 

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { onMount } from 'svelte';
 
 	import type { DOMToast } from '../core/types';
@@ -6,24 +8,31 @@
 	import ToastBar from './ToastBar.svelte';
 	import ToastMessage from './ToastMessage.svelte';
 
-	export let toast: DOMToast;
-	export let setHeight: (height: number) => void;
+	interface Props {
+		toast: DOMToast;
+		setHeight: (height: number) => void;
+		children?: import('svelte').Snippet<[any]>;
+	}
 
-	let clientHeight: number;
+	let { toast, setHeight, children }: Props = $props();
+
+	let clientHeight: number = $state();
 
 	function onHeightChange(clientHeight: number) {
 		if (clientHeight === undefined) return;
 		setHeight(clientHeight);
 	}
 
-	$: onHeightChange(clientHeight);
-	$: top = toast.position?.includes('top') ? 0 : null;
-	$: bottom = toast.position?.includes('bottom') ? 0 : null;
-	$: factor = toast.position?.includes('top') ? 1 : -1;
-	$: justifyContent =
-		(toast.position?.includes('center') && 'center') ||
+	run(() => {
+		onHeightChange(clientHeight);
+	});
+	let top = $derived(toast.position?.includes('top') ? 0 : null);
+	let bottom = $derived(toast.position?.includes('bottom') ? 0 : null);
+	let factor = $derived(toast.position?.includes('top') ? 1 : -1);
+	let justifyContent =
+		$derived((toast.position?.includes('center') && 'center') ||
 		((toast.position?.includes('right') || toast.position?.includes('end')) && 'flex-end') ||
-		null;
+		null);
 </script>
 
 <div
@@ -40,9 +49,9 @@
 	{#if toast.type === 'custom'}
 		<ToastMessage {toast} />
 	{:else}
-		<slot {toast}>
+		{#if children}{@render children({ toast, })}{:else}
 			<ToastBar {toast} position={toast.position} />
-		</slot>
+		{/if}
 	{/if}
 </div>
 
