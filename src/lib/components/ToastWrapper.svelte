@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
-	import { onMount } from 'svelte';
+	import { type Snippet } from 'svelte';
 
 	import type { DOMToast } from '../core/types';
 	import { prefersReducedMotion } from '../core/utils';
@@ -11,19 +9,20 @@
 	interface Props {
 		toast: DOMToast;
 		setHeight: (height: number) => void;
-		children?: import('svelte').Snippet<[any]>;
+		children?: Snippet<[any]>;
 	}
 
 	let { toast, setHeight, children }: Props = $props();
 
-	let clientHeight: number = $state();
+	let clientHeight: number | undefined = $state();
 
 	function onHeightChange(clientHeight: number) {
 		if (clientHeight === undefined) return;
 		setHeight(clientHeight);
 	}
 
-	run(() => {
+	$effect(() => {
+		if (clientHeight === undefined) return;
 		onHeightChange(clientHeight);
 	});
 	let top = $derived(toast.position?.includes('top') ? 0 : null);
