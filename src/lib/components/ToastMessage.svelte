@@ -12,7 +12,8 @@
 	{#if typeof toast.message === 'string'}
 		{toast.message}
 	{:else}
-		<toast.message {toast} {...toast.props} />
+		{@const Message = toast.message}
+		<Message {toast} {...toast.props} />
 	{/if}
 </div>
 
