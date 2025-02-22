@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import ToastIcon from './ToastIcon.svelte';
 	import type { Toast, ToastPosition } from '../core/types';
 	import { prefersReducedMotion } from '../core/utils';
@@ -24,14 +22,13 @@
 		children
 	}: Props = $props();
 
-	let factor: number = $state();
-	let animation: string = $state();
-	run(() => {
+	let factor: number | undefined = $derived.by(() => {
 		const top = (toast.position || position || 'top-center').includes('top');
-		factor = top ? 1 : -1;
-
+		return top ? 1 : -1;
+	});
+	let animation: string | undefined = $derived.by(() => {
 		const [enter, exit] = prefersReducedMotion() ? ['fadeIn', 'fadeOut'] : ['enter', 'exit'];
-		animation = toast.visible ? enter : exit;
+		return toast.visible ? enter : exit;
 	});
 </script>
 
