@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type Snippet } from 'svelte';
+	import { onMount, type Snippet } from 'svelte';
 
 	import type { DOMToast } from '../core/types';
 	import { prefersReducedMotion } from '../core/utils';
@@ -21,7 +21,7 @@
 		setHeight(clientHeight);
 	}
 
-	$effect(() => {
+	onMount(() => {
 		if (clientHeight === undefined) return;
 		onHeightChange(clientHeight);
 	});
