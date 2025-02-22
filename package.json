@@ -41,7 +41,7 @@
 		"test:unit": "vitest"
 	},
 	"dependencies": {
-		"svelte-writable-derived": "^3.1.0"
+		"svelte-writable-derived": "^3.1.1"
 	},
 	"peerDependencies": {
 		"svelte": "^3.57.0 || ^4.0.0"
