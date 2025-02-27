@@ -1,8 +1,8 @@
 <script lang="ts">
-	import ToastIcon from './ToastIcon.svelte';
+	import type { Component as ComponentType, Snippet } from 'svelte';
 	import type { Toast, ToastPosition } from '../core/types';
 	import { prefersReducedMotion } from '../core/utils';
-	import type { Snippet, Component as ComponentType } from 'svelte';
+	import ToastIcon from './ToastIcon.svelte';
 	import ToastMessage from './ToastMessage.svelte';
 
 	interface Props {
@@ -28,13 +28,15 @@
 		return top ? 1 : -1;
 	});
 	let animation: string | undefined = $derived.by(() => {
-		const [enter, exit] = prefersReducedMotion() ? ['fadeIn', 'fadeOut'] : ['enter', 'exit'];
+		const [enter, exit] = prefersReducedMotion()
+			? ['_sft-fadeIn', '_sft-fadeOut']
+			: ['_sft-enter', '_sft-exit'];
 		return toast.visible ? enter : exit;
 	});
 </script>
 
 <div
-	class="base {toast.height ? animation : 'transparent'} {toast.className || ''}"
+	class="_sft-base {toast.height ? animation : '_sft-transparent'} {toast.className || ''}"
 	style="{style}; {toast.style}"
 	style:--factor={factor}
 >
@@ -94,7 +96,7 @@
 		}
 	}
 
-	.base {
+	._sft-base {
 		display: flex;
 		align-items: center;
 		background: #fff;
@@ -110,23 +112,23 @@
 		border-radius: 8px;
 	}
 
-	.transparent {
+	._sft-transparent {
 		opacity: 0;
 	}
 
-	.enter {
+	._sft-enter {
 		animation: enterAnimation 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
 	}
 
-	.exit {
+	._sft-exit {
 		animation: exitAnimation 0.4s cubic-bezier(0.06, 0.71, 0.55, 1) forwards;
 	}
 
-	.fadeIn {
+	._sft-fadeIn {
 		animation: fadeInAnimation 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
 	}
 
-	.fadeOut {
+	._sft-fadeOut {
 		animation: fadeOutAnimation 0.4s cubic-bezier(0.06, 0.71, 0.55, 1) forwards;
 	}
 </style>

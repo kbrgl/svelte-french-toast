@@ -1,8 +1,8 @@
 <script lang="ts">
+	import type { Toast } from '../core/types';
 	import CheckmarkIcon from './CheckmarkIcon.svelte';
 	import ErrorIcon from './ErrorIcon.svelte';
 	import LoaderIcon from './LoaderIcon.svelte';
-	import type { Toast } from '../core/types';
 
 	interface Props {
 		toast: Toast;
@@ -13,15 +13,15 @@
 </script>
 
 {#if typeof icon === 'string'}
-	<div class="animated">{icon}</div>
+	<div class="_sft-animated">{icon}</div>
 {:else if typeof icon !== 'undefined'}
 	{@const IconComponent = icon}
 	<IconComponent />
 {:else if type !== 'blank'}
-	<div class="indicator">
+	<div class="_sft-indicator">
 		<LoaderIcon {...iconTheme} />
 		{#if type !== 'loading'}
-			<div class="status">
+			<div class="_sft-status">
 				{#if type === 'error'}
 					<ErrorIcon {...iconTheme} />
 				{:else}
@@ -33,7 +33,7 @@
 {/if}
 
 <style>
-	.indicator {
+	._sft-indicator {
 		position: relative;
 		display: flex;
 		justify-content: center;
@@ -42,11 +42,11 @@
 		min-height: 20px;
 	}
 
-	.status {
+	._sft-status {
 		position: absolute;
 	}
 
-	.animated {
+	._sft-animated {
 		position: relative;
 		transform: scale(0.6);
 		opacity: 0.4;

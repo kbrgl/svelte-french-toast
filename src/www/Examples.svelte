@@ -10,7 +10,7 @@
 		<label
 			for={example.title}
 			class="cursor-pointer p-2 bg-gray-100 hover:border-blue-500 rounded-xl transition-colors border-2 border-transparent"
-			class:checked={example.title === selected}
+			class:_sft-checked={example.title === selected}
 		>
 			<input
 				type="radio"
@@ -42,7 +42,7 @@
 	input[type='radio'] {
 		@apply appearance-none;
 	}
-	.checked {
+	._sft-checked {
 		@apply border-blue-500 font-bold;
 	}
 </style>
