@@ -1,6 +1,6 @@
 <script lang="ts">
-	import useToaster from '../core/use-toaster';
 	import type { DOMToast, ToastOptions, ToastPosition } from '../core/types';
+	import useToaster from '../core/use-toaster';
 	import ToastWrapper from './ToastWrapper.svelte';
 
 	interface Props {
@@ -37,7 +37,7 @@
 </script>
 
 <div
-	class="toaster {containerClassName || ''}"
+	class="_sft-toaster {containerClassName || ''}"
 	style={containerStyle}
 	onmouseenter={handlers.startPause}
 	onmouseleave={handlers.endPause}
@@ -49,7 +49,7 @@
 </div>
 
 <style>
-	.toaster {
+	._sft-toaster {
 		--default-offset: 16px;
 
 		position: fixed;
