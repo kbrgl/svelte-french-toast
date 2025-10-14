@@ -1,4 +1,4 @@
-import type { SvelteComponent } from 'svelte';
+import type { Component, SvelteComponent } from 'svelte';
 
 export type ToastType = 'success' | 'error' | 'loading' | 'blank' | 'custom';
 /** Specifies the toast's position on the screen
@@ -22,6 +22,8 @@ export type ToastPosition =
 
 export type Renderable<T extends Record<string, unknown> = Record<string, unknown>> =
 	| typeof SvelteComponent<T>
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	| Component<T, any, any>
 	| string
 	| null;
 

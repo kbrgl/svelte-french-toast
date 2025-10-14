@@ -34,18 +34,24 @@ const clearFromRemoveQueue = (toastId: string) => {
 	}
 };
 
-export function update(toast: Partial<Toast>, clearTimeout = true) {
+export function update<T extends Record<string, unknown>>(
+	toast: Partial<Toast<T>>,
+	clearTimeout = true
+) {
 	if (clearTimeout && toast.id) {
 		clearFromRemoveQueue(toast.id);
 	}
-	toasts.update(($toasts) => $toasts.map((t) => (t.id === toast.id ? { ...t, ...toast } : t)));
+	const normalized = toast as Partial<Toast>;
+	toasts.update(($toasts) =>
+		$toasts.map((t) => (t.id === normalized.id ? { ...t, ...normalized } : t))
+	);
 }
 
-export function add(toast: Toast) {
-	toasts.update(($toasts) => [toast, ...$toasts].slice(0, TOAST_LIMIT));
+export function add<T extends Record<string, unknown>>(toast: Toast<T>) {
+	toasts.update(($toasts) => [toast as unknown as Toast, ...$toasts].slice(0, TOAST_LIMIT));
 }
 
-export function upsert(toast: Toast) {
+export function upsert<T extends Record<string, unknown>>(toast: Toast<T>) {
 	if (get(toasts).find((t) => t.id === toast.id)) {
 		update(toast);
 	} else {
