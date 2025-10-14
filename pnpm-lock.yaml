@@ -62,7 +62,7 @@ importers:
         version: 0.5.0
       prismjs:
         specifier: ^1.29.0
-        version: 1.29.0
+        version: 1.30.0
       publint:
         specifier: ^0.1.16
         version: 0.1.16
@@ -1380,8 +1380,8 @@ packages:
   prism-svelte@0.5.0:
     resolution: {integrity: sha512-db91Bf3pRGKDPz1lAqLFSJXeW13mulUJxhycysFpfXV5MIK7RgWWK2E5aPAa71s8TCzQUXxF5JOV42/iOs6QkA==}
 
-  prismjs@1.29.0:
-    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
+  prismjs@1.30.0:
+    resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
     engines: {node: '>=6'}
 
   publint@0.1.16:
@@ -2908,7 +2908,7 @@ snapshots:
 
   prism-svelte@0.5.0: {}
 
-  prismjs@1.29.0: {}
+  prismjs@1.30.0: {}
 
   publint@0.1.16:
     dependencies:
