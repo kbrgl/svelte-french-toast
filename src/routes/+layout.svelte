@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import '$lib/css/index.css';
 	interface Props {
 		children?: import('svelte').Snippet;
 	}

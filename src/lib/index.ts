@@ -12,6 +12,8 @@ export type {
 	ValueFunction
 } from './core/types';
 
+export type { Message } from './core/toast';
+
 export { default as useToaster } from './core/use-toaster';
 export { useToasterStore } from './core/store';
 export { default as ToastBar } from './components/ToastBar.svelte';

@@ -1,24 +1,25 @@
 import type { SvelteComponent } from 'svelte';
 
 export type ToastType = 'success' | 'error' | 'loading' | 'blank' | 'custom';
-/** Specifies the toast's position on the screen
- *
- * Logical positions (`start`, `end`) are recommended over absolute positions
- * (`left`, `right`), as they automatically adjust based on the text direction
- * of the locale (LTR or RTL). Examples:
- * - Use `top-start` instead of `top-left`.
- * - Use `top-end` instead of `top-right`. */
+
 export type ToastPosition =
 	| 'top-left'
 	| 'top-center'
 	| 'top-right'
 	| 'bottom-left'
 	| 'bottom-center'
-	| 'bottom-right'
-	| 'top-start'
-	| 'top-end'
-	| 'bottom-start'
-	| 'bottom-end';
+	| 'bottom-right';
+
+export type Theme = 'light' | 'dark' | 'system';
+
+export interface ToastTheme {
+	primary: string;
+	secondary: string;
+	background: string;
+	text: string;
+	border: string;
+	shadow: string;
+}
 
 export type Renderable<T extends Record<string, unknown> = Record<string, unknown>> =
 	| typeof SvelteComponent<T>
@@ -50,18 +51,14 @@ export interface Toast<T extends Record<string, unknown> = Record<string, unknow
 	duration?: number;
 	pauseDuration: number;
 	position?: ToastPosition;
-
-	// We use `Omit` here in the case that the Component has `export let toast: Toast`.
-	// We are already passing the toast to the component, and it should not be included in props.
 	props?: Omit<T, 'toast'>;
-
 	ariaProps: {
 		role: 'status' | 'alert';
 		'aria-live': 'assertive' | 'off' | 'polite';
 	};
 
-	style?: string;
 	className?: string;
+	style?: string;
 	iconTheme?: IconTheme;
 
 	createdAt: number;
@@ -99,4 +96,6 @@ export interface ToasterProps {
 	gutter?: number;
 	containerStyle?: string;
 	containerClassName?: string;
+	theme?: Theme;
+	visibleToasts?: number;
 }

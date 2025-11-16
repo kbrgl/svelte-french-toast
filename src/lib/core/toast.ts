@@ -10,9 +10,9 @@ import {
 } from './types';
 import { genId } from './utils';
 
-type Message<T extends Record<string, unknown> = Record<string, unknown>> = Renderable<T>;
+export type Message<T extends Record<string, unknown> = Record<string, unknown>> = Renderable<T>;
 
-type ToastHandler = <T extends Record<string, unknown> = Record<string, unknown>>(
+export type ToastHandler = <T extends Record<string, unknown> = Record<string, unknown>>(
 	message: Message<T>,
 	options?: ToastOptions<T>
 ) => string;
@@ -36,6 +36,8 @@ const createToast = <T extends Record<string, unknown> = Record<string, unknown>
 	iconTheme: opts?.iconTheme,
 	position: opts?.position,
 	props: opts?.props,
+	className: opts?.className,
+	style: opts?.style,
 	id: opts?.id || genId()
 });
 
@@ -57,9 +59,7 @@ toast.success = createHandler('success');
 toast.loading = createHandler('loading');
 toast.custom = createHandler('custom');
 
-toast.dismiss = (toastId?: string) => {
-	dismiss(toastId);
-};
+toast.dismiss = (toastId?: string) => dismiss(toastId);
 
 toast.remove = (toastId?: string) => remove(toastId);
 
@@ -68,8 +68,7 @@ toast.promise = <T>(
 	msgs: {
 		loading: Renderable;
 		success: ValueOrFunction<Renderable, T>;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		error: ValueOrFunction<Renderable, any>;
+		error: ValueOrFunction<Renderable, unknown>;
 	},
 	opts?: DefaultToastOptions
 ) => {

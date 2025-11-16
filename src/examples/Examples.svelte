@@ -5,7 +5,7 @@
 	let selected: Example['title'] | null = $state('Success');
 </script>
 
-<div class="grid grid-cols-2 md:grid-cols-3 gap-4 rounded-xl mb-5">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-xl mb-5">
 	{#each examples as example (example.title)}
 		<label
 			for={example.title}

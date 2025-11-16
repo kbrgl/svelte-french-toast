@@ -15,14 +15,13 @@ export const pausedAt: State['pausedAt'] = writable(null);
 const toastTimeouts = new Map<Toast['id'], ReturnType<typeof setTimeout>>();
 
 const addToRemoveQueue = (toastId: string) => {
-	if (toastTimeouts.has(toastId)) {
-		return;
-	}
+	if (toastTimeouts.has(toastId)) return;
 
+	const animationDuration = 50;
 	const timeout = setTimeout(() => {
 		toastTimeouts.delete(toastId);
 		remove(toastId);
-	}, 1000);
+	}, animationDuration);
 
 	toastTimeouts.set(toastId, timeout);
 };
@@ -120,8 +119,7 @@ export function useToasterStore(toastOptions: DefaultToastOptions = {}): State {
 					t.duration ||
 					toastOptions[t.type]?.duration ||
 					toastOptions?.duration ||
-					defaultTimeouts[t.type],
-				style: [toastOptions.style, toastOptions[t.type]?.style, t.style].join(';')
+					defaultTimeouts[t.type]
 			})),
 		($toasts) => $toasts
 	);
