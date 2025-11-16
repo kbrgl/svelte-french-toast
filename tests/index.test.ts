@@ -841,8 +841,6 @@ test.describe('🔥 FINAL BOSS: Comprehensive Integration Tests', () => {
 		console.log(`  Total test duration: ${duration}ms`);
 		expect(duration).toBeLessThan(30000);
 
-		// 14. Wait for cleanup
-		await page.waitForTimeout(6000);
 		const remainingToasts = await getToastCount(page);
 		console.log(`  Remaining toasts after cleanup: ${remainingToasts}`);
 		expect(remainingToasts).toBeLessThan(5);
@@ -1122,7 +1120,6 @@ test.describe('Svelte French Toast - Performance Metrics', () => {
 		const operationTime = Date.now() - startTime;
 		console.log(`Toast operation time: ${operationTime}ms`);
 
-		// Toast should appear in reasonable time (under 6 seconds is acceptable)
 		expect(operationTime).toBeLessThan(6000);
 	});
 });

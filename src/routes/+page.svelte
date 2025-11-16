@@ -26,14 +26,14 @@
 <div class="mx-auto max-w-2xl px-5 py-10">
 	<section>
 		<Installation />
-		<div class="mt-6">
+		<div class="mt-10">
 			<h2 class="text-xl font-bold">2. Mount and use</h2>
 		</div>
 		<pre class="language-html"><code>{code}</code></pre>
 		<Copy text={code} />
 	</section>
 
-	<hr class="my-16" />
+	<hr class="my-10" />
 
 	<section>
 		<div class="mb-8">
