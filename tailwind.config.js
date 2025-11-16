@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		fontFamily: {

@@ -1,6 +1,6 @@
 {
 	"name": "svelte-french-toast",
-	"version": "2.0.0-alpha.0",
+	"version": "3.0.0",
 	"description": "Buttery smooth Svelte toasts. Lightweight, customizable, and beautiful by default.",
 	"keywords": [
 		"svelte",
@@ -23,19 +23,20 @@
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
+	"style": "./dist/css/index.css",
 	"files": [
 		"dist"
 	],
 	"scripts": {
-		"build": "vite build && pnpm run package",
+		"build": "vite build && npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"dev": "vite dev",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"package": "svelte-kit sync && svelte-package && publint && cp README.md header-image.png dist/",
+		"package": "svelte-kit sync && svelte-package && publint",
 		"prepare": "svelte-kit sync",
-		"prepublishOnly": "pnpm run package",
+		"prepublishOnly": "npm run package",
 		"preview": "vite preview",
 		"test": "playwright test",
 		"test:unit": "vitest"
@@ -67,6 +68,7 @@
 		"publint": "^0.1.16",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.1.4",
+		"svelte-preprocess": "^6.0.3",
 		"tailwindcss": "^3.4.17",
 		"tslib": "^2.8.1",
 		"typescript": "^5.7.3",
@@ -74,5 +76,5 @@
 		"vite": "^6.1.1",
 		"vitest": "^3.0.6"
 	},
-	"packageManager": "pnpm@9.13.2+sha512.88c9c3864450350e65a33587ab801acf946d7c814ed1134da4a924f6df5a2120fd36b46aab68f7cd1d413149112d53c7db3a4136624cfd00ff1846a0c6cef48a"
+	"packageManager": "npm@9.13.2+sha512.88c9c3864450350e65a33587ab801acf946d7c814ed1134da4a924f6df5a2120fd36b46aab68f7cd1d413149112d53c7db3a4136624cfd00ff1846a0c6cef48a"
 }
