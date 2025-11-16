@@ -17,7 +17,7 @@
 		<div class="flex gap-2">
 			{#each installers as i}
 				<label for={i.name} class:checked={i.name === installer} class="flex items-center gap-2">
-					<img src={`/assets/${i.name.toLowerCase()}.png`} alt={i.name} class="w-5 h-5" />
+					<img src={`/managers/${i.name.toLowerCase()}.png`} alt={i.name} class="w-5 h-5" />
 					<input type="radio" id={i.name} name="installers" value={i.name} bind:group={installer} />
 					{i.name}
 				</label>
