@@ -40,12 +40,12 @@
 
 	label {
 		cursor: pointer;
-		@apply px-4 py-1.5 rounded-xl text-sm font-medium transition-all;
+		@apply px-4 py-1.5 rounded-full text-sm font-medium transition-all;
 		@apply bg-gray-100 text-gray-700 hover:bg-gray-200;
 	}
 
 	label.checked {
-		@apply bg-orange-500 text-white shadow-md;
+		@apply bg-amber-400 text-white shadow-sm;
 	}
 
 	label img {

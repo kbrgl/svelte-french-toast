@@ -46,7 +46,13 @@
 	let isDark = $derived(resolveTheme($theme) === 'dark');
 
 	let computedClasses = $derived.by(() => {
-		const classes = ['_sft-base'];
+		const classes = [];
+
+		if (toast.type === 'custom') {
+			classes.push('_sft-custom-wrapper');
+		} else {
+			classes.push('_sft-base');
+		}
 
 		if (toast.height) {
 			classes.push(animation);
@@ -62,13 +68,17 @@
 	});
 
 	let computedStyle = $derived.by(() => {
-		const styles = [
-			`--sft-toast-bg: ${themeColors.background}`,
-			`--sft-toast-text: ${themeColors.text}`,
-			`--sft-toast-border: ${themeColors.border}`,
-			`--sft-toast-shadow: ${themeColors.shadow}`,
-			`--sft-factor: ${factor}`
-		];
+		const styles = [`--sft-factor: ${factor}`];
+
+		// Only add theme colors for non-custom toasts
+		if (toast.type !== 'custom') {
+			styles.unshift(
+				`--sft-toast-bg: ${themeColors.background}`,
+				`--sft-toast-text: ${themeColors.text}`,
+				`--sft-toast-border: ${themeColors.border}`,
+				`--sft-toast-shadow: ${themeColors.shadow}`
+			);
+		}
 
 		if (toast.style) {
 			styles.push(toast.style);
@@ -93,7 +103,11 @@
 		</Component>
 	{:else if children}
 		{@render children({ ToastIcon, ToastMessage, toast })}
+	{:else if toast.type === 'custom'}
+		<!-- Custom: Just the message, no icon -->
+		<ToastMessage {toast} />
 	{:else}
+		<!-- Standard: Icon + Message -->
 		<ToastIcon {toast} />
 		<ToastMessage {toast} />
 	{/if}

@@ -97,7 +97,7 @@ const examples: Example[] = [
 		title: 'Rich content',
 		emoji: '🔩',
 		snippet: `<script lang="ts">
-	import toast_, {type Toast} from 'svelte-french-toast';
+	import toast_, { type Toast } from 'svelte-french-toast';
 
 	export let toast: Toast;
 	export let someProp: string;
@@ -110,12 +110,13 @@ const examples: Example[] = [
 		Custom and <b class="font-semibold">bold</b> with props like {someProp}!
 	</span>
 	<button
-		on:click={() => toast_.remove(toast.id)}
+		on:click={() => toast_.dismiss(toast.id)}
 		class="ml-2 px-2 py-1 rounded-full bg-rose-500 text-white text-sm font-medium hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-300 transition-all shadow-sm"
 	>
 		Remove
 	</button>
 </span>
+
 `,
 		html: true,
 		action: () => {

@@ -55,7 +55,7 @@
 		<div class="flex items-center gap-4 mb-8">
 			<button
 				onclick={launchToast}
-				class="flex items-center space-x-2 text-lg py-3 font-bold px-6 rounded-xl bg-amber-300 hover:bg-amber-400 border-2 border-amber-400 shadow-md transition-all"
+				class="flex items-center space-x-2 text-lg py-2 font-bold px-5 rounded-xl bg-amber-300 hover:bg-amber-400 border-2 border-amber-400 shadow-sm transition-all"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

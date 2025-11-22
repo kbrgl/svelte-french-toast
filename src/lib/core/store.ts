@@ -17,7 +17,7 @@ const toastTimeouts = new Map<Toast['id'], ReturnType<typeof setTimeout>>();
 const addToRemoveQueue = (toastId: string) => {
 	if (toastTimeouts.has(toastId)) return;
 
-	const animationDuration = 50;
+	const animationDuration = 1000;
 	const timeout = setTimeout(() => {
 		toastTimeouts.delete(toastId);
 		remove(toastId);

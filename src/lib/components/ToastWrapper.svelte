@@ -42,9 +42,7 @@
 	style:bottom
 	style:justify-content={justifyContent}
 >
-	{#if toast.type === 'custom' && !children}
-		<ToastMessage {toast} />
-	{:else if children}
+	{#if children}
 		{@render children({ toast })}
 	{:else}
 		<ToastBar {toast} position={toast.position} />

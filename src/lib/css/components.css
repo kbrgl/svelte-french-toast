@@ -58,6 +58,14 @@
 	pointer-events: auto;
 }
 
+._sft-custom-wrapper {
+	display: flex;
+	align-items: center;
+	line-height: 1.3;
+	will-change: transform;
+	pointer-events: auto;
+}
+
 ._sft-transparent {
 	opacity: 0;
 }

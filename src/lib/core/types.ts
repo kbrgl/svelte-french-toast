@@ -1,4 +1,4 @@
-import type { SvelteComponent } from 'svelte';
+import type { Component, SvelteComponent } from 'svelte';
 
 export type ToastType = 'success' | 'error' | 'loading' | 'blank' | 'custom';
 
@@ -21,10 +21,13 @@ export interface ToastTheme {
 	shadow: string;
 }
 
-export type Renderable<T extends Record<string, unknown> = Record<string, unknown>> =
-	| typeof SvelteComponent<T>
+export type Renderable =
+	| Component<Record<string, unknown>, Record<string, unknown>, string>
+	| typeof SvelteComponent<Record<string, unknown>>
 	| string
-	| null;
+	| null
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	| Component<any, any, any>;
 
 export interface IconTheme {
 	primary: string;
@@ -43,15 +46,15 @@ export const resolveValue = <TValue, TArg>(
 	arg: TArg
 ): TValue => (isFunction(valOrFunction) ? valOrFunction(arg) : valOrFunction);
 
-export interface Toast<T extends Record<string, unknown> = Record<string, unknown>> {
+export interface Toast {
 	type: ToastType;
 	id: string;
-	message: Renderable<T>;
+	message: Renderable;
 	icon?: Renderable;
 	duration?: number;
 	pauseDuration: number;
 	position?: ToastPosition;
-	props?: Omit<T, 'toast'>;
+	props?: Record<string, unknown>;
 	ariaProps: {
 		role: 'status' | 'alert';
 		'aria-live': 'assertive' | 'off' | 'polite';
@@ -60,19 +63,20 @@ export interface Toast<T extends Record<string, unknown> = Record<string, unknow
 	className?: string;
 	style?: string;
 	iconTheme?: IconTheme;
+	unstyled?: boolean;
 
 	createdAt: number;
 	visible: boolean;
 	height?: number;
 }
 
-export type DOMToast<T extends Record<string, unknown> = Record<string, unknown>> = Toast<T> & {
+export type DOMToast = Toast & {
 	offset: number;
 };
 
-export type ToastOptions<T extends Record<string, unknown> = Record<string, unknown>> = Partial<
+export type ToastOptions = Partial<
 	Pick<
-		Toast<T>,
+		Toast,
 		| 'id'
 		| 'icon'
 		| 'duration'
@@ -82,6 +86,7 @@ export type ToastOptions<T extends Record<string, unknown> = Record<string, unkn
 		| 'position'
 		| 'iconTheme'
 		| 'props'
+		| 'unstyled'
 	>
 >;
 

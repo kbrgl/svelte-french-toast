@@ -2,9 +2,9 @@
 
 ![img](header-image.png)
 
-[![npm](https://img.shields.io/npm/v/svelte-french-toast?color=orange&label=NPM)](https://www.npmjs.com/package/svelte-french-toast) 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE.md) 
-[![Website](https://img.shields.io/badge/Website-Visit-blue)](https://svelte-french-toast.vercel.app)
+[![npm](https://img.shields.io/npm/v/svelte-french-toast?color=orange&label=NPM)](https://www.npmjs.com/package/svelte-french-toast)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE.md)
+[![Website](https://img.shields.io/badge/Visit-blue)](https://svelte-french-toast.vercel.app)
 
 > Buttery smooth Svelte notifications.
 
