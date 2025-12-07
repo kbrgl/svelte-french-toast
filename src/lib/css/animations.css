@@ -1,0 +1,116 @@
+/* Toast Animations */
+
+/* Entry & Exit Animations */
+@keyframes sft-enter-animation {
+	0% {
+		transform: translate3d(0, calc(var(--sft-factor) * -200%), 0) scale(0.6);
+		opacity: 0.5;
+	}
+	100% {
+		transform: translate3d(0, 0, 0) scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes sft-exit-animation {
+	0% {
+		transform: translate3d(0, 0, -1px) scale(1);
+		opacity: 1;
+	}
+	100% {
+		transform: translate3d(0, calc(var(--sft-factor) * -150%), -1px) scale(0.6);
+		opacity: 0;
+	}
+}
+
+@keyframes sft-fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes sft-fade-out {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+/* Icon Animations */
+@keyframes sft-icon-enter {
+	from {
+		transform: scale(0.6);
+		opacity: 0.4;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes sft-circle-animation {
+	from {
+		transform: scale(0) rotate(45deg);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1) rotate(45deg);
+		opacity: 1;
+	}
+}
+
+/* Checkmark Animation */
+@keyframes sft-checkmark-animation {
+	0% {
+		height: 0;
+		width: 0;
+		opacity: 0;
+	}
+	40% {
+		height: 0;
+		width: 6px;
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+		height: 10px;
+	}
+}
+
+/* Error Icon Animations */
+@keyframes sft-first-line {
+	from {
+		transform: scale(0);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes sft-second-line {
+	from {
+		transform: scale(0) rotate(90deg);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1) rotate(90deg);
+		opacity: 1;
+	}
+}
+
+/* Loader Animation */
+@keyframes sft-rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

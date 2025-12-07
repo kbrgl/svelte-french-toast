@@ -1,0 +1,20 @@
+:root {
+	--sft-toast-bg: #fff;
+	--sft-toast-text: #363636;
+	--sft-toast-border: transparent;
+	--sft-toast-shadow: 0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);
+
+	--sft-success-primary: #5fd343;
+	--sft-success-secondary: #fff;
+	--sft-error-primary: #ff574b;
+	--sft-error-secondary: #fff;
+	--sft-loader-primary: #616161;
+	--sft-loader-secondary: #e0e0e0;
+
+	--sft-default-offset: 16px;
+	--sft-max-width: 350px;
+	--sft-border-radius: 8px;
+	--sft-padding: 8px 10px;
+
+	--sft-factor: 1;
+}

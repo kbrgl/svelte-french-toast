@@ -22,7 +22,6 @@ const examples: Example[] = [
 		title: 'Error',
 		emoji: '❌',
 		snippet: `toast.error("This didn't work.")`,
-
 		action: () => {
 			toast.error("This didn't work.");
 		}
@@ -97,25 +96,31 @@ const examples: Example[] = [
 	{
 		title: 'Rich content',
 		emoji: '🔩',
-		snippet: `<script>
-	import toast_ from 'svelte-french-toast';
+		snippet: `<script lang="ts">
+	import toast_, { type Toast } from 'svelte-french-toast';
 
-	export let toast;
-
-	// Use this component in your app:
-	// toast(RichContent, { props: { someProp: '⭐' }})
+	export let toast: Toast;
+	export let someProp: string;
 </script>
 
-<script>
-	export let someProp;
-</script>
-<span>
-	Custom and <b>bold</b> with props like {someProp}!
-	<button on:click={() => toast_.dismiss(toast.id)}>Dismiss</button>
-</span>`,
+<span
+	class="inline-flex justify-between items-center w-full py-2 bg-white border border-neutral-200 rounded-lg shadow-sm px-3"
+>
+	<span class="font-normal">
+		Custom and <b class="font-semibold">bold</b> with props like {someProp}!
+	</span>
+	<button
+		on:click={() => toast_.dismiss(toast.id)}
+		class="ml-2 px-2 py-1 rounded-full bg-rose-500 text-white text-sm font-medium hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-300 transition-all shadow-sm"
+	>
+		Remove
+	</button>
+</span>
+
+`,
 		html: true,
 		action: () => {
-			toast(RichContent, { props: { someProp: '⭐' } });
+			toast.custom(RichContent, { props: { someProp: '⭐' } });
 		}
 	},
 	{
@@ -128,7 +133,6 @@ const examples: Example[] = [
 		secondary: '#FFFAEE'
 	}
 });`,
-
 		action: () => {
 			toast.success('Look at me!', {
 				style: 'border: 1px solid #713200; padding: 16px; color: #713200;',
@@ -147,8 +151,22 @@ const examples: Example[] = [
 })`,
 		action: () => {
 			toast.success('Always at the bottom.', {
-				position: 'bottom-center',
-				duration: 10000
+				position: 'bottom-center'
+			});
+		}
+	},
+	{
+		title: 'Tailwind',
+		emoji: '⚡',
+		snippet: `toast('Tailwind Power Activated!', {
+  className: "bg-gradient-to-r from-rose-400 via-red-400 to-amber-500 text-white font-bold px-5 py-3 rounded-xl shadow-lg transform hover:scale-105 transition-all flex items-center gap-2",
+  icon: '⚡',
+});`,
+		action: () => {
+			toast('Tailwind Power Activated!', {
+				className:
+					'bg-gradient-to-r from-rose-400 via-red-400 to-amber-500 text-white font-bold px-5 py-3 rounded-xl shadow-lg transform hover:scale-105 transition-all flex items-center gap-2',
+				icon: '⚡'
 			});
 		}
 	}

@@ -1,0 +1,112 @@
+._sft-toaster {
+	position: fixed;
+	z-index: 9999;
+	top: var(--sft-default-offset);
+	left: var(--sft-default-offset);
+	right: var(--sft-default-offset);
+	bottom: var(--sft-default-offset);
+	pointer-events: none;
+}
+
+._sft-wrapper {
+	left: 0;
+	right: 0;
+	display: flex;
+	position: absolute;
+	transform: translateY(calc(var(--offset, 16px) * var(--sft-factor) * 1px));
+}
+
+._sft-transition {
+	transition: all 230ms cubic-bezier(0.21, 1.02, 0.73, 1);
+}
+
+._sft-active {
+	z-index: 9999;
+}
+
+._sft-active > * {
+	pointer-events: auto;
+}
+
+._sft-base:not([class*='bg-']) {
+	background: var(--sft-toast-bg);
+}
+
+._sft-base:not([class*='text-']) {
+	color: var(--sft-toast-text);
+}
+
+._sft-base:not([class*='shadow-']) {
+	box-shadow: var(--sft-toast-shadow);
+}
+
+._sft-base:not([class*='border-']):not([class*='rounded-']) {
+	border: 1px solid var(--sft-toast-border);
+	border-radius: var(--sft-border-radius);
+}
+
+._sft-base:not([class*='p-']):not([class*='px-']):not([class*='py-']) {
+	padding: var(--sft-padding);
+}
+
+._sft-base {
+	display: flex;
+	align-items: center;
+	line-height: 1.3;
+	will-change: transform;
+	max-width: var(--sft-max-width);
+	pointer-events: auto;
+}
+
+._sft-custom-wrapper {
+	display: flex;
+	align-items: center;
+	line-height: 1.3;
+	will-change: transform;
+	pointer-events: auto;
+}
+
+._sft-transparent {
+	opacity: 0;
+}
+
+._sft-enter {
+	animation: sft-enter-animation 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+}
+
+._sft-exit {
+	animation: sft-exit-animation 0.4s cubic-bezier(0.06, 0.71, 0.55, 1) forwards;
+}
+
+._sft-fadeIn {
+	animation: sft-fade-in 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+}
+
+._sft-fadeOut {
+	animation: sft-fade-out 0.4s cubic-bezier(0.06, 0.71, 0.55, 1) forwards;
+}
+
+._sft-indicator {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 20px;
+	min-height: 20px;
+}
+
+._sft-status {
+	position: absolute;
+}
+
+._sft-animated {
+	position: relative;
+	transform: scale(0.6);
+	opacity: 0.4;
+	min-width: 20px;
+	animation: sft-icon-enter 0.3s 0.12s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+._sft-message {
+	margin-left: 8px;
+}

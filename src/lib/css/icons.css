@@ -1,0 +1,72 @@
+/* Icon Styles */
+
+._sft-checkmark {
+	width: 20px;
+	opacity: 0;
+	height: 20px;
+	border-radius: 10px;
+	background: var(--primary, var(--sft-success-primary));
+	position: relative;
+	transform: rotate(45deg);
+	animation: sft-circle-animation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+	animation-delay: 100ms;
+}
+
+._sft-checkmark::after {
+	content: '';
+	box-sizing: border-box;
+	animation: sft-checkmark-animation 0.2s ease-out forwards;
+	opacity: 0;
+	animation-delay: 200ms;
+	position: absolute;
+	border-right: 2px solid;
+	border-bottom: 2px solid;
+	border-color: var(--secondary, var(--sft-success-secondary));
+	bottom: 6px;
+	left: 6px;
+	height: 10px;
+	width: 6px;
+}
+._sft-error {
+	width: 20px;
+	opacity: 0;
+	height: 20px;
+	border-radius: 10px;
+	background: var(--sft-error-primary);
+	position: relative;
+	transform: rotate(45deg);
+	animation: sft-circle-animation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+	animation-delay: 100ms;
+}
+
+._sft-error::after,
+._sft-error::before {
+	content: '';
+	animation: sft-first-line 0.15s ease-out forwards;
+	animation-delay: 150ms;
+	position: absolute;
+	border-radius: 3px;
+	opacity: 0;
+	background: var(--secondary);
+	bottom: 9px;
+	left: 4px;
+	height: 2px;
+	width: 12px;
+}
+
+._sft-error::before {
+	animation: sft-second-line 0.15s ease-out forwards;
+	animation-delay: 180ms;
+	transform: rotate(90deg);
+}
+
+._sft-loader {
+	width: 12px;
+	height: 12px;
+	box-sizing: border-box;
+	border: 2px solid;
+	border-radius: 100%;
+	border-color: var(--secondary, var(--sft-loader-secondary));
+	border-right-color: var(--primary, var(--sft-loader-primary));
+	animation: sft-rotate 1s linear infinite;
+}
