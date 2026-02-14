@@ -1,4 +1,8 @@
-import type { SvelteComponent } from 'svelte';
+import type { Component, SvelteComponent } from 'svelte';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+type SvelteRenderableComponent = Component<any> | (new (...args: any[]) => SvelteComponent<any>);
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 export type ToastType = 'success' | 'error' | 'loading' | 'blank' | 'custom';
 /** Specifies the toast's position on the screen
@@ -20,10 +24,7 @@ export type ToastPosition =
 	| 'bottom-start'
 	| 'bottom-end';
 
-export type Renderable<T extends Record<string, unknown> = Record<string, unknown>> =
-	| typeof SvelteComponent<T>
-	| string
-	| null;
+export type Renderable = SvelteRenderableComponent | string | null;
 
 export interface IconTheme {
 	primary: string;
@@ -45,7 +46,7 @@ export const resolveValue = <TValue, TArg>(
 export interface Toast<T extends Record<string, unknown> = Record<string, unknown>> {
 	type: ToastType;
 	id: string;
-	message: Renderable<T>;
+	message: Renderable;
 	icon?: Renderable;
 	duration?: number;
 	pauseDuration: number;

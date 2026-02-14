@@ -117,9 +117,9 @@ export function useToasterStore(toastOptions: DefaultToastOptions = {}): State {
 				...toastOptions[t.type],
 				...t,
 				duration:
-					t.duration ||
-					toastOptions[t.type]?.duration ||
-					toastOptions?.duration ||
+					t.duration ??
+					toastOptions[t.type]?.duration ??
+					toastOptions?.duration ??
 					defaultTimeouts[t.type],
 				style: [toastOptions.style, toastOptions[t.type]?.style, t.style].join(';')
 			})),

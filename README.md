@@ -48,6 +48,50 @@ Mount a `<Toaster />` at the top level of your app and use the `toast` API to di
 
 For more usage examples, see [the website](https://svelte-french-toast.vercel.app).
 
+## Development
+
+```bash
+pnpm install
+pnpm run lint
+pnpm run check
+pnpm run test:unit
+pnpm run test:unit:coverage
+pnpm run test:e2e
+pnpm run build
+pnpm run verify:dist
+pnpm run pack:dry-run
+```
+
+## Releasing
+
+- `prepublishOnly` now runs full release verification and package checks.
+- Unit test coverage is enforced in CI/release verification with Vitest thresholds.
+- `pnpm run verify:dist` fails if `.test.`, `.spec.`, or test-directory artifacts leak into `dist/`.
+- `pnpm run pack:dry-run` previews the exact npm tarball contents.
+- Publish from local/CI with `pnpm run deploy:npm`.
+- GitHub Actions publish runs from `.github/workflows/release.yml` on tags matching `v*` (for example, `v2.0.0`) and verifies tag/package version parity.
+- Set repository secret `NPM_TOKEN` with publish access for this package.
+
+### Maintainer release runbook
+
+1. Ensure prerequisites are configured:
+   - `NPM_TOKEN` secret exists in GitHub repository settings and can publish this package.
+   - GitHub Actions are enabled for the repository.
+2. Prepare and validate the release locally:
+   - Update `package.json` version to the target release version.
+   - Run `pnpm run prepublishOnly` and ensure it passes.
+3. Preferred release path (tag-triggered publish):
+   - Commit the version bump.
+   - Create a matching tag: `git tag -a vX.Y.Z -m "vX.Y.Z"` (tag version must match `package.json` version).
+   - Push commit and tag: `git push origin <branch> && git push origin vX.Y.Z`.
+4. Alternative release path (manual dispatch):
+   - Open Actions -> `Publish` -> `Run workflow`.
+   - Run it from the default branch only.
+   - Note: the publish job is guarded to run only from `v*` tags or the default branch.
+5. Post-release checks:
+   - Confirm the `Publish` workflow succeeded.
+   - Verify the new version on npm (`npm view svelte-french-toast version`).
+
 ## Thanks
 
 Thanks to the original author of React Hot Toast and its contributors.
